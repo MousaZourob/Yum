@@ -8,7 +8,8 @@ require('dotenv').config();
 app.use(cors());
 app.use(express.json());
 
-//app.use('/users', require('./users'));
+
+app.use('/users', require('./routes/users'));
 //app.use('/listings', require('./listings'));
 
 
@@ -20,6 +21,8 @@ const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("MongoDB database connection established")
 })
+
+
 
 app.listen(3000, function() {
     console.log('Server listening on port 3000')
