@@ -13,13 +13,18 @@ router.route('/get').get((req, res) => {
 
 router.route('/add').post((req, res) => {
 
+    //hash the password, we store the hash
+    const saltRounds = 10;
+    const hash = bcrypt.hashSync(req.body.password, saltRounds);
+
     const newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password
+        password: hash
 
     });
     
+    //Save new user into database
     newUser.save() 
     .then(() => res.json('User Added!'))
     .catch(err => res.status(400).json('Error: ' +err));
