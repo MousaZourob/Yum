@@ -12,6 +12,7 @@
     "mongoose": "^5.11.9",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-hook-form": "^6.13.1",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
@@ -38,5 +39,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-babel": "^5.3.1"
   }
 }
