@@ -8,22 +8,15 @@ router.route('/get').get((req, res) => {
         .then(users => res.json(users))
         .catch(err => res.status(400).json('Error: ' + err));
 
-    console.log("Users Found")
+    console.log("Listings Found")
 });
 
 router.route('/add').post((req, res) => {
-
-    //hash the password, we store the hash
-    const saltRounds = 10;
-    const hash = bcrypt.hashSync(req.body.password, saltRounds);
-
     const newListing = new Listing({
-        username: req.body.username,
+        name: req.body.name,
         title: req.body.title,
         description: req.body.description,
         image: req.body.description,
-        password: hash
-
     });
     
     //Save new listing into database

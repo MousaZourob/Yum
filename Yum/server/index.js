@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.use('/users', require('./routes/users'));
 app.use('/images', require('./routes/images'));
-//app.use('/listings', require('./listings'));
+app.use('/listings', require('./routes/listings'));
 
 
 const uri = process.env.ATLAS_URI;
