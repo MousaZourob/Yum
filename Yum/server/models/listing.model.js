@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const foodSchema = new Schema({
+const listingSchema = new Schema({
     username: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String, required: true },
@@ -11,6 +11,6 @@ const foodSchema = new Schema({
     timestamps: true,
 });
 
-const Food = mongoose.model('Food', foodSchema);
+const Listing = mongoose.model('Listing', listingSchema);
 
-module.exports = Food;
+module.exports = Listing;
