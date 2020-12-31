@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
+import axios from "axios";
 
 const Listings = (props) => {
   const { register, handleSubmit } = useForm({});
 
+  function createListing(data, restrictions) {
+    axios({
+      method: "post",
+      url: "",
+      data: { ...data, name: "test" },
+    });
+  }
+
   const onSubmit = (values) => {
-    props.createListing(values, JSON.stringify(restrictions));
+    createListing(values, JSON.stringify(restrictions));
     setRestrictions([]);
   };
 
