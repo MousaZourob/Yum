@@ -7,10 +7,11 @@ const Listings = (props) => {
   const { register, handleSubmit } = useForm({});
 
   function createListing(data, restrictions) {
+    console.log({ ...data, restrictions: restrictions, name: "test" });
     axios({
       method: "post",
-      url: "",
-      data: { ...data, name: "test" },
+      url: "http://localhost:8000/listings/add",
+      data: { ...data, restrictions: restrictions, name: "test" },
     });
   }
 
@@ -52,7 +53,6 @@ const Listings = (props) => {
             onChange={handleChange}
             options={options}
           />
-          {console.log(restrictions)}
         </label>
         <br />
         <button type="submit">Create Listing</button>
