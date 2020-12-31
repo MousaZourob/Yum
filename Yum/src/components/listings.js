@@ -4,11 +4,10 @@ import CreatableSelect from "react-select/creatable";
 
 const Listings = (props) => {
   const { register, handleSubmit } = useForm({});
-  const { reset, setReset } = useState(false);
+
   const onSubmit = (values) => {
     props.createListing(values, JSON.stringify(restrictions));
     setRestrictions([]);
-    setReset(true);
   };
 
   const options = [
@@ -25,30 +24,6 @@ const Listings = (props) => {
     setRestrictions(e);
   };
 
-  const generate_form = () => {
-    if (reset) {
-      setReset(false);
-      return (
-        <CreatableSelect
-          isMulti
-          closeMenuOnSelect={false}
-          onChange={handleChange}
-          options={options}
-          value={null}
-        />
-      );
-    } else {
-      return (
-        <CreatableSelect
-          isMulti
-          closeMenuOnSelect={false}
-          onChange={handleChange}
-          options={options}
-        />
-      );
-    }
-  };
-
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -62,7 +37,12 @@ const Listings = (props) => {
         </label>
         <label>
           Dietary Restrictions
-          {generate_form()}
+          <CreatableSelect
+            isMulti
+            closeMenuOnSelect={false}
+            onChange={handleChange}
+            options={options}
+          />
           {console.log(restrictions)}
         </label>
         <br />
