@@ -8,14 +8,10 @@ import Register from "./components/register.component";
 import Listings from "./components/listings.js";
 
 function App() {
-  const createListing = (data, restrictions) => {
-    //todo
-  };
-
   return (
     <Router>
       <Navbar />
-      <Listings createListing={createListing} />
+      <Listings />
       <br />
       <Route path="/users/add" exact component={Register} />
     </Router>
