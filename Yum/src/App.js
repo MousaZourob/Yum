@@ -13,7 +13,7 @@ class App extends React.Component {
       ],
     };
   }
-  createListing = (data) => {
+  createListing = (data, restrictions) => {
     let listings = [...this.state.listings];
     listings.push(data);
     this.setState(listings);
