@@ -5,23 +5,15 @@ export default class Register extends Component {
     constructor(props) {
         super(props);
 
-        this.onChangeName = this.onChangeName.bind(this);
         this.onChangeEmail = this.onChangeEmail.bind(this);
         this.onChangePassword = this.onChangePassword.bind(this);
 
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
-            name: '',
             email: '',
             password: ''
         }
-    }
-
-    onChangeName(e) {
-        this.setState({
-            name: e.target.value
-        })
     }
 
     onChangeEmail(e) {
@@ -38,15 +30,13 @@ export default class Register extends Component {
 
     async onSubmit(e) {
         e.preventDefault();
-
+        
         const user = {
-            name: this.state.name,
             password: this.state.password,
             email: this.state.email
-
         }
-        console.log("User " + user + " added");
-
+        console.log(user);
+        
         const res = await axios.post('http://localhost:8000/users/add', user);
         if (res.status === 200) {
             localStorage.setItem('jwt', res.data.jwt);
@@ -55,7 +45,6 @@ export default class Register extends Component {
         }
         
         this.setState({
-            name: '',
             email: '',
             password: ''
         })
@@ -64,18 +53,8 @@ export default class Register extends Component {
     render() {
         return (
             <div className="container" >
-                <h3>Register</h3>
+                <h3>Login</h3>
                 <form onSubmit={this.onSubmit}>
-                    <div className="form-group">
-                        <label>Name: </label>
-                        <input type="text"
-                            placeholder="Your Name"
-                            required
-                            className="form-control"
-                            value={this.state.name}
-                            onChange={this.onChangeName}
-                        />
-                    </div>
                     <div className="form-group">
                         <label>Email: </label>
                         <input type="text"
@@ -98,7 +77,7 @@ export default class Register extends Component {
                     </div>
 
                     <div className="form-group">
-                        <input type="submit" value="Register" className="btn btn-primary" />
+                        <input type="submit" value="Login" className="btn btn-primary" />
                     </div>
                 </form>
             </div>
