@@ -4,8 +4,8 @@ const router = express.Router();
 
 router.route('/get').get((req, res) => {
     console.log("Listing requested");
-    User.find()
-        .then(users => res.json(users))
+    Listing.find()
+        .then(listings => res.json(listings))
         .catch(err => res.status(400).json('Error: ' + err));
 
     console.log("Listings Found")
@@ -16,6 +16,7 @@ router.route('/add').post((req, res) => {
         name: req.body.name,
         title: req.body.title,
         description: req.body.description,
+        restrictions: req.body.restrictions,
         image: req.body.description,
     });
     
