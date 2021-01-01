@@ -14,7 +14,6 @@ const Listings = () => {
 
   return (
     <div>
-      <ListingForm />
       {listings.map((listing) => {
         return <Listing data={listing} />;
       })}
