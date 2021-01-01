@@ -36,7 +36,7 @@ export default class Register extends Component {
         })
     }
 
-    onSubmit(e) {
+    async onSubmit(e) {
         e.preventDefault();
 
         const user = {
@@ -47,8 +47,12 @@ export default class Register extends Component {
         }
         console.log("User " + user + " added");
 
-        axios.post('http://localhost:8000/users/add', user, {withCredentials: true})
-            .then(res => console.log(res.data));
+        const res = await axios.post('http://localhost:8000/users/add', user);
+        if (res.status === 200) {
+            localStorage.setItem('jwt', res.data.jwt);
+        } else {
+            console.log(`Registration error: ${JSON.stringify(res.data)}`)
+        }
         
         this.setState({
             name: '',
