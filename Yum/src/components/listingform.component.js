@@ -22,7 +22,7 @@ const ListingForm = () => {
 
   const options = [
     { value: "halal", label: "Halal" },
-    { value: "vegetarian", label: "Vegeterian" },
+    { value: "vegetarian", label: "Vegetarian" },
     { value: "vegan", label: "Vegan" },
     { value: "nut", label: "Nut Free" },
     { value: "lactose", label: "Lactose Free" },
@@ -35,17 +35,24 @@ const ListingForm = () => {
   };
 
   return (
-    <div>
+    <div className="form-group container">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <label>
+        <div><label className="font-weight-bold" style={{paddingTop: 10}}>
           Title
-          <input type="text" name="title" ref={register} />
+          <input type="text" name="title" ref={register} className="form-control" />
         </label>
-        <label>
+        </div>
+
+        <div><label className="font-weight-bold">
           Description
-          <input type="text" name="description" ref={register} />
-        </label>
-        <label>
+          <textarea type="text" name="description" ref={register} className="form-control" 
+          
+          style = {{height: 169, width: 420}}
+
+          />
+        </label></div>
+
+        <div><label className="font-weight-bold">
           Dietary Restrictions
           <CreatableSelect
             isMulti
@@ -53,9 +60,10 @@ const ListingForm = () => {
             onChange={handleChange}
             options={options}
           />
-        </label>
+        </label></div>
+        
         <br />
-        <button type="submit">Create Listing</button>
+        <button type="submit" className="btn btn-dark">Create Listing</button>
       </form>
     </div>
   );

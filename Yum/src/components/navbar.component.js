@@ -2,7 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import 'reactjs-popup/dist/index.css';
 import Popup from 'reactjs-popup';
+import { useForm } from "react-hook-form";
+import ListingForm from './listingform.component';
 
+const test = () => {
+  return (
+    <div>
+      <p>test test test</p>
+    </div>
+  );
+};
 
 export default class Navbar extends Component {
   render() {
@@ -18,11 +27,6 @@ export default class Navbar extends Component {
                 View Listings
               </Link>
             </li>
-            <li className="navbar-item">
-              <Link to="/listings/add" className="nav-link">
-                Create Listing
-              </Link>
-            </li>
           </ul>
           <ul className="navbar-nav navbar-right">
             <li className="navbar-item">
@@ -35,12 +39,12 @@ export default class Navbar extends Component {
                 Login
               </Link>
             </li>
-            <li className="navbar-item">
+            <li className="navbar-item">  
               <Popup
                 trigger={<button className="btn btn-primary font-weight-bold"> Create Listing</button>}
                 modal
                 position="center">
-                <div>test</div>
+                <div><ListingForm/></div>
               </Popup>
             </li>
           </ul>
