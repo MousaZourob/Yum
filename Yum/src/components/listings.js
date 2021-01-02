@@ -12,21 +12,21 @@ const Listings = (props) => {
     });
   }, []);
 
-  const renderListings = () => {
-    if (props.userId) {
-      listings
-        .filter((listing) => listing.data.userId == props.userId)
+  function renderListings() {
+    if (props.userId === undefined) {
+      return listings.map((listing) => {
+        return <Listing data={listing} />;
+      });
+    } else {
+      return listings
+        .filter((listing) => listing.data.userId === props.userId)
         .map((listing) => {
           return <Listing data={listing} />;
         });
-    } else {
-      listings.map((listing) => {
-        return <Listing data={listing} />;
-      });
     }
-  };
+  }
 
-  return { renderListings };
+  return <div>{renderListings()}</div>;
 };
 
 export default Listings;
