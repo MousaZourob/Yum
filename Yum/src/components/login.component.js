@@ -67,7 +67,7 @@ export default class Login extends Component {
                     </div>
                     <div className="form-group">
                         <label>Password: </label>
-                        <input type="text"
+                        <input type="password"
                             placeholder="Password"
                             required
                             className="form-control"

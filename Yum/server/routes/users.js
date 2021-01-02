@@ -31,10 +31,10 @@ router.route('/add').post(async (req, res) => {
     
     try {
         //Save new user into database
-        await newUser.save();
+        const user = await newUser.save();
         // Sign JWT token and send to client
         res.status(200).send({
-            jwt: jwt.sign({ name: req.body.name, email: req.body.email }, process.env.JWT_SECRET)
+            jwt: jwt.sign({ name: user.name, email: user.email, _id: user._id.toString() }, process.env.JWT_SECRET)
         });
         console.log("New user added");
     } catch (err) {
@@ -59,7 +59,7 @@ router.route('/login').post(async (req, res) => {
     if (bcrypt.compareSync(req.body.password, user.password)) {
         // Sign JWT token and send to client
         res.status(200).send({
-            jwt: jwt.sign({ name: user.name, email: user.email }, process.env.JWT_SECRET)
+            jwt: jwt.sign({ name: user.name, email: user.email, _id: user._id.toString() }, process.env.JWT_SECRET)
         });
     } else {
         res.status(401).send({ error: 'Password incorrect' });
