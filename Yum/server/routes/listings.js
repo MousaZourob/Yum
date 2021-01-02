@@ -17,6 +17,7 @@ router.route('/add').post((req, res) => {
         title: req.body.title,
         description: req.body.description,
         restrictions: req.body.restrictions,
+        location: req.body.location,
         image: req.body.description,
     });
     
