@@ -11,6 +11,7 @@ export default class Register extends Component {
 
         this.onSubmit = this.onSubmit.bind(this);
 
+        //State of Fields When Page First Loads
         this.state = {
             name: '',
             email: '',
@@ -38,7 +39,8 @@ export default class Register extends Component {
 
     async onSubmit(e) {
         e.preventDefault();
-
+        
+        //Create user object with all the neccesary fields
         const user = {
             name: this.state.name,
             password: this.state.password,
@@ -46,14 +48,16 @@ export default class Register extends Component {
 
         }
         console.log("User " + user + " added");
-
+        
+        //Post user obj to add new user to db
         const res = await axios.post('http://localhost:8000/users/add', user);
         if (res.status === 200) {
             localStorage.setItem('jwt', res.data.jwt);
         } else {
             console.log(`Registration error: ${JSON.stringify(res.data)}`)
         }
-        
+
+        //Reset Fields
         this.setState({
             name: '',
             email: '',
