@@ -106,13 +106,13 @@ export default class Register extends Component {
                         />
                     </div>
 
-                    { this.state.resMessage === 404 &&
+                    { this.state.resMessage == 404 &&
                     <h3 className="error"> Complete all the fields! </h3> }
-                    { this.state.resMessage === 422 &&
+                    { this.state.resMessage == 422 &&
                     <h3 className="error"> Email already registered! </h3> }
-                    { this.state.resMessage === 400 &&
+                    { this.state.resMessage == 400 &&
                     <h3 className="error"> Username already registered! </h3> }
-                    { this.state.resMessage === 200 &&
+                    { this.state.resMessage == 200 &&
                     <h3 className="error"> Success! </h3> }
 
                     <div className="form-group">
