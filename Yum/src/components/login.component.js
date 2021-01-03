@@ -37,7 +37,7 @@ export default class Login extends Component {
         }
         console.log(user);
         
-        const res = await axios.post('http://localhost:8000/users/add', user);
+        const res = await axios.post('http://localhost:8000/users/login', user);
         if (res.status === 200) {
             localStorage.setItem('jwt', res.data.jwt);
         } else {
