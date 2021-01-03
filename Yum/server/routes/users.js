@@ -19,7 +19,7 @@ router.route('/add').post(async (req, res) => {
     }
     User.findOne({email: req.body.email})
     .then((savedUser)=>{
-        if (savedUser.email) {
+        if (savedUser?.email) {
             return res.status(422).send({ error: 'User already exists with that email' });
         }
     })
