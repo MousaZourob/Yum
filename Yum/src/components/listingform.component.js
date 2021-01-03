@@ -11,6 +11,9 @@ const ListingForm = () => {
     axios({
       method: "post",
       url: "http://localhost:8000/listings/add",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
       data: { ...data, restrictions: restrictions, name: "test" },
     });
   }
@@ -37,33 +40,47 @@ const ListingForm = () => {
   return (
     <div className="form-group container">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div><label className="font-weight-bold" style={{paddingTop: 10}}>
-          Title
-          <input type="text" name="title" ref={register} className="form-control" />
-        </label>
+        <div>
+          <label className="font-weight-bold" style={{ paddingTop: 10 }}>
+            Title
+            <input
+              type="text"
+              name="title"
+              ref={register}
+              className="form-control"
+            />
+          </label>
         </div>
 
-        <div><label className="font-weight-bold">
-          Description
-          <textarea type="text" name="description" ref={register} className="form-control" 
-          
-          style = {{height: 169, width: 420}}
+        <div>
+          <label className="font-weight-bold">
+            Description
+            <textarea
+              type="text"
+              name="description"
+              ref={register}
+              className="form-control"
+              style={{ height: 169, width: 420 }}
+            />
+          </label>
+        </div>
 
-          />
-        </label></div>
+        <div>
+          <label className="font-weight-bold">
+            Dietary Restrictions
+            <CreatableSelect
+              isMulti
+              closeMenuOnSelect={false}
+              onChange={handleChange}
+              options={options}
+            />
+          </label>
+        </div>
 
-        <div><label className="font-weight-bold">
-          Dietary Restrictions
-          <CreatableSelect
-            isMulti
-            closeMenuOnSelect={false}
-            onChange={handleChange}
-            options={options}
-          />
-        </label></div>
-        
         <br />
-        <button type="submit" className="btn btn-dark">Create Listing</button>
+        <button type="submit" className="btn btn-dark">
+          Create Listing
+        </button>
       </form>
     </div>
   );
