@@ -14,7 +14,8 @@ export default class Register extends Component {
         this.state = {
             name: '',
             email: '',
-            password: ''
+            password: '',
+            resMessage: ''
         }
     }
 
@@ -47,17 +48,25 @@ export default class Register extends Component {
         }
         console.log("User " + user + " added");
 
-        const res = await axios.post('http://localhost:8000/users/add', user);
+        const res = await axios({
+            method: 'post',
+            url: 'http://localhost:8000/users/add',
+            validateStatus: null,
+            data: user
+          });
         if (res.status === 200) {
             localStorage.setItem('jwt', res.data.jwt);
+            this.setState({resMessage: JSON.stringify(res.status)});
         } else {
-            console.log(`Registration error: ${JSON.stringify(res.data)}`)
+            console.log(`Registration error: ${JSON.stringify(res.data)}`);
+            this.setState({resMessage: JSON.stringify(res.status)});
+            console.log(this.state.resMessage);
         }
         
         this.setState({
             name: '',
             email: '',
-            password: ''
+            password: '',
         })
     }
 
@@ -96,6 +105,15 @@ export default class Register extends Component {
                             onChange={this.onChangePassword}
                         />
                     </div>
+
+                    { this.state.resMessage == 404 &&
+                    <h3 className="error"> Complete all the fields! </h3> }
+                    { this.state.resMessage == 422 &&
+                    <h3 className="error"> Email already registered! </h3> }
+                    { this.state.resMessage == 400 &&
+                    <h3 className="error"> Username already registered! </h3> }
+                    { this.state.resMessage == 200 &&
+                    <h3 className="error"> Success! </h3> }
 
                     <div className="form-group">
                         <input type="submit" value="Register" className="btn btn-primary" />
