@@ -15,9 +15,14 @@ router.route('/get').get((req, res) => {
 router.route('/add').post(async (req, res) => {
     // verify that request is valid
     if (!req.body.name || !req.body.email || !req.body.password) {
-        res.status(400).send({ error: 'Not all fields were complete' });
-        return;
+        return res.status(404).send({ error: 'Not all fields were complete' });
     }
+    User.findOne({email: req.body.email})
+    .then((savedUser)=>{
+        if (savedUser.email) {
+            return res.status(422).send({ error: 'User already exists with that email' });
+        }
+    })
     //hash the password, we store the hash
     const saltRounds = 10;
     const hash = bcrypt.hashSync(req.body.password, saltRounds);

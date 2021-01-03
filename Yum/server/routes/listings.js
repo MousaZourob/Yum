@@ -13,6 +13,7 @@ router.route('/get').get((req, res) => {
 
 router.route('/add').post((req, res) => {
     const newListing = new Listing({
+        user_id: "",
         name: req.body.name,
         title: req.body.title,
         description: req.body.description,
