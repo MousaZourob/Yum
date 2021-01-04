@@ -36,7 +36,7 @@ const Listing = (props) => {
       }}
       >
         <div style={{ background: "lightgrey", gridColumn: "1/5", padding: 5 }}><h1>{data.title}</h1></div>
-        <div style={{ background: "black", gridColumn: "1/3", gridRow: "2/4", color: "white" }}><img style={{width: "420px", height:"388px"}} src="https://steamcdn-a.akamaihd.net/steamcommunity/public/images/avatars/42/42fe2d42cff9f6e8f3cf21ff1b12535c375e9148_full.jpg" alt="Italian Trulli"></img></div>
+        <div style={{ background: "black", gridColumn: "1/3", gridRow: "2/4", color: "white" }}><img style={{width: "420px", height:"388px"}} src="https://hips.hearstapps.com/del.h-cdn.co/assets/18/07/1518705462-80-chicken-mcnugget-happy-meal.jpg" alt="Italian Trulli"></img></div>
         <div style={{ background: "grey", gridRow: "2", gridColumn: "3/5", padding: "20px" }}><p>{data.description}</p></div>
         <div style={{ background: "#ddd", gridRow: "3", gridColumn: "3/5", padding: 10 }}>
           <ul style={{columnCount: 3, position: "center"}}>
