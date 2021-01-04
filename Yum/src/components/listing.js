@@ -4,9 +4,11 @@ import Popup from 'reactjs-popup';
 import { Redirect } from "react-router-dom";
 
 
+
 const Listing = (props) => {
   const data = props.data;
   const restrictions = JSON.parse(data.restrictions);
+  
   return (
 
     <Popup
@@ -35,10 +37,10 @@ const Listing = (props) => {
         width: "100%" 
       }}
       >
-        <div style={{ background: "lightgrey", gridColumn: "1/5", padding: 5 }}><h1>{data.title}</h1></div>
+        <div style={{ background: "#cccccc", gridColumn: "1/5", padding: 5 }}><h1>{data.title}</h1></div>
         <div style={{ background: "black", gridColumn: "1/3", gridRow: "2/4", color: "white" }}><img style={{width: "420px", height:"388px"}} src="https://hips.hearstapps.com/del.h-cdn.co/assets/18/07/1518705462-80-chicken-mcnugget-happy-meal.jpg" alt="Italian Trulli"></img></div>
-        <div style={{ background: "grey", gridRow: "2", gridColumn: "3/5", padding: "20px" }}><p>{data.description}</p></div>
-        <div style={{ background: "#ddd", gridRow: "3", gridColumn: "3/5", padding: 10 }}>
+        <div style={{ background: "#cccccc", gridRow: "2", gridColumn: "3/5", padding: "20px" }}><p>{data.description}</p></div>
+        <div style={{ background: "#cccccc", gridRow: "3", gridColumn: "3/5", padding: 10 }}>
           <ul style={{columnCount: 3, position: "center"}}>
             {restrictions.map((restriction) => {
               return (
@@ -58,15 +60,7 @@ const Listing = (props) => {
   );
 };
 
+
+
 export default Listing;
-/*<h1>{data.title}</h1>
-        <p>{data.description}</p>
-        <ul>
-          {restrictions.map((restriction) => {
-            return (
-              <li>
-                <p>{restriction.label}</p>
-              </li>
-            );
-          })}
-        </ul>*/
+
