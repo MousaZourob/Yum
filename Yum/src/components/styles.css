@@ -1,0 +1,13 @@
+.listItem {
+    background-color: "#cccccc";
+    border-radius: 10px;
+}
+
+.card {
+    transition: transform .2s;
+
+}
+
+.card:hover {
+    transform: scale(1.018);
+}
