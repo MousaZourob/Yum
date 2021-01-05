@@ -6,6 +6,10 @@ import { useForm } from "react-hook-form";
 import ListingForm from './listingform.component';
 import jwt_decode from "jwt-decode";
 
+function LogOut(props) {
+  localStorage.removeItem("jwt");
+}
+
 function UserGreeting(props) {
   return (
     <ul className="navbar-nav navbar-right">
@@ -19,6 +23,11 @@ function UserGreeting(props) {
           position="center">
           <div><ListingForm/></div>
         </Popup>
+      </li>
+      <li className="navbar-item">
+        <Link to="/listings" className="nav-link ml-auto" onClick={LogOut}>
+          Logout
+        </Link>
       </li>
     </ul>
   )
