@@ -19,86 +19,47 @@ const Listing = (props) => {
     });
   }, []);
 
+  let name = data.name;
+  
   return (
-    <Popup
-      className="listing"
-      trigger={
-        <div
-          style={{
-            cursor: "pointer",
-            margin: 24,
-            boxShadow: "5px 5px 5px #d9d9d9",
-          }}
-        >
-          {/*Basic Listing Info*/}
-          <div class="card w-400" style={{}}>
-            <div class="card-body">
-              <h1>{data.title}</h1>
-            </div>
-          </div>
+    <Popup className="listing"
+    trigger={<div style={{ cursor: "pointer", margin: 24, boxShadow: "5px 5px 5px #d9d9d9" }}>
+      {/*Basic Listing Info*/}
+      <div class="card w-400">
+        <div class="card-body">
+          <h1 >{data.title}</h1>
+          <p>Lister: {name}</p>
         </div>
-      }
-      modal
-      position="center"
+      </div>
+    </div>}
+
+    modal
+    position="center">
+
+    {/*Specific Listing Info*/}
+    <div class="container" style={{
+      padding: 10,
+      width: "100%"
+    }}
     >
-      {/*Specific Listing Info*/}
-      <div
-        class="grid-container"
-        style={{
-          padding: 10,
-          display: "grid",
-          gridGap: "20px",
-          gridTemplateRows: "60px 280px 88px",
-          gridTemplateColumns: "200px 200px 200px",
-          width: "100%",
-        }}
-      >
-        <div
-          style={{
-            background: "#cccccc",
-            gridColumn: "1/5",
-            padding: 5,
-            borderRadius: "10px",
-          }}
-        >
-          <h1>{data.title}</h1>
+      <div class="row" style={{padding: 5, borderRadius: "10px"}}>
+        <div style={{ background: "#cccccc", width: "100%", borderRadius: "10px", padding: 5}} ><h1>{data.title}</h1></div>
+        
+      </div>
+
+      <div class="row" style={{ borderRadius: "10px", marginTop: ".42%" }}>
+        {/*PIC*/}
+        <div class="col-md-6">
+          <img style={{ width: "100%", height: "100%", borderRadius: "10px" }} src={`http://localhost:8000/images/get/${data.image}`} alt="Italian Trulli"></img>  
         </div>
-        <div
-          style={{
-            background: "black",
-            gridColumn: "1/3",
-            gridRow: "2/4",
-            color: "white",
-            borderRadius: "10px",
-          }}
-        >
-          <img
-            style={{ width: "420px", height: "388px" }}
-            src="https://hips.hearstapps.com/del.h-cdn.co/assets/18/07/1518705462-80-chicken-mcnugget-happy-meal.jpg"
-            alt="Italian Trulli"
-          ></img>
-        </div>
-        <div
-          style={{
-            background: "#cccccc",
-            gridRow: "2",
-            gridColumn: "3/5",
-            padding: "20px",
-            borderRadius: "10px",
-          }}
-        >
-          <p>{data.description}</p>
-        </div>
-        <div
-          style={{
-            gridRow: "3",
-            gridColumn: "3/5",
-            padding: 10,
-            background: "#cccccc",
-            borderRadius: "10px",
-          }}
-        >
-          <ul style={{ columnCount: 3, position: "center" }}>
+        
+        <div class="col-6" style = {{paddingRight: 24}}>
+          {/*DESCRIPTION*/}
+          <div class="row" style={{ padding: 10, background: "#cccccc", borderRadius: "10px", marginTop: "2%", paddingBottom: 0 }} ><p>{data.description}</p></div>
+
+          {/*RESTRICTIONS*/}
+          <div class="row" style={{ padding: 10, background: "#cccccc", borderRadius: "10px", marginTop: "2.4%"}}><ul
+            style={{ columnCount: 3, wordWrap: "break-word", columnGap: 50, paddingTop: 10}}>
             {restrictions.map((restriction) => {
               return (
                 <li>
@@ -107,10 +68,11 @@ const Listing = (props) => {
               );
             })}
           </ul>
+          </div>
         </div>
       </div>
-    </Popup>
-  );
-};
+    </div>
+  </Popup >
+  )
 
 export default Listing;

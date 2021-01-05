@@ -19,7 +19,7 @@ router.post('/add', jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] 
         description: req.body.description,
         restrictions: req.body.restrictions,
         location: req.body.location,
-        image: req.body.description,
+        image: (req.body.image) ? req.body.image : '404.png',
     });
     
     //Save new listing into database

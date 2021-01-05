@@ -25,17 +25,17 @@ router.post('/upload', function (req, res) {
     });
 });
 
-router.get('/get', function (req, res) {
-    if (!req.body.filename) {
+router.get('/get/:filename', function (req, res) {
+    if (!req.params.filename) {
         res.status(400).send({ error: 'Missing file name'});
         return;
     }
     // we restrict the filename to alphanumeric characters and a period to prevent directory traversal attacks
-    const imagePath = path.normalize(`${__dirname}/../uploads/${req.body.filename.replace(/[^a-zA-Z0-9\.]/, '')}`);
+    const imagePath = path.normalize(`${__dirname}/../uploads/${req.params.filename.replace(/[^a-zA-Z0-9\.]/, '')}`);
     if (fs.existsSync(imagePath)) {
         res.sendFile(imagePath);
     } else {
-        res.status(404).send({ error: 'Image could not be found'});
+        res.sendFile(path.normalize(`${__dirname}/../assets/404.png`));
     }
 });
 
