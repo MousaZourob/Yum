@@ -11,6 +11,7 @@ app.use(express.json());
 app.use("/users", require("./routes/users"));
 app.use("/images", require("./routes/images"));
 app.use("/listings", require("./routes/listings"));
+app.use("/listing", require("./routes/listing"));
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {
@@ -24,6 +25,6 @@ connection.once("open", () => {
   console.log("MongoDB database connection established");
 });
 
-app.listen(8000, function() {
-    console.log('Server listening on port 8000')
-})
+app.listen(8000, function () {
+  console.log("Server listening on port 8000");
+});

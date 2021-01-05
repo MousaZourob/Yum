@@ -4,13 +4,18 @@ import CreatableSelect from "react-select/creatable";
 import axios from "axios";
 
 const ListingForm = () => {
-  const { register, handleSubmit } = useForm({});
+  const { register, handleSubmit, errors } = useForm({
+    mode: "onBlur",
+  });
 
   function createListing(data, restrictions) {
+    data.location = data.location.replace("-", "");
+    data.location = data.location.replace(" ", "");
+    data.location = data.location.toUpperCase();
     console.log({ ...data, restrictions: restrictions, name: "test" });
     axios({
       method: "post",
-      url: "http://localhost:8000/listings/add",
+      url: "http://localhost:8000/add",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
@@ -46,7 +51,9 @@ const ListingForm = () => {
             <input
               type="text"
               name="title"
-              ref={register}
+              ref={register({
+                required: "Required",
+              })}
               className="form-control"
             />
           </label>
@@ -58,11 +65,29 @@ const ListingForm = () => {
             <textarea
               type="text"
               name="description"
-              ref={register}
+              ref={register({
+                required: "Required",
+              })}
               className="form-control"
               style={{ height: 169, width: 420 }}
             />
           </label>
+        </div>
+
+        <div>
+          Location
+          <input
+            type="text"
+            name="location"
+            ref={register({
+              required: "Required",
+              pattern: {
+                value: /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i,
+                message: "Invalid Postal Code",
+              },
+            })}
+          />
+          {errors.location && <span>{errors.location.message}</span>}
         </div>
 
         <div>
