@@ -5,6 +5,8 @@ import axios from "axios";
 
 const ListingForm = () => {
   const { register, handleSubmit } = useForm({});
+  const [restrictions, setRestrictions] = useState([]);
+  const [image, setImage] = useState('');
 
   function createListing(data, restrictions) {
     console.log({ ...data, restrictions: restrictions, name: "test" });
@@ -14,7 +16,7 @@ const ListingForm = () => {
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
-      data: { ...data, restrictions: restrictions, name: "test" },
+      data: { ...data, restrictions: restrictions, name: "test", image: image },
     });
   }
 
@@ -31,11 +33,27 @@ const ListingForm = () => {
     { value: "lactose", label: "Lactose Free" },
   ];
 
-  const [restrictions, setRestrictions] = useState([]);
-
   const handleChange = (e) => {
     setRestrictions(e);
   };
+
+  const handleImage = (e) => {
+    const formData = new FormData();
+    formData.append('image', e.target.files[0]);
+    axios({
+      method: 'post',
+      url: 'http://localhost:8000/images/upload',
+      validateStatus: null,
+      data: formData
+    }).then(res => {
+      if (res.status === 200) {
+        console.log(res.data.filename);
+        setImage(res.data.filename);
+      } else {
+        console.log(`Upload failed with res status ${res.status}`)
+      }
+    });
+  }
 
   return (
     <div className="form-group container">
@@ -76,6 +94,8 @@ const ListingForm = () => {
             />
           </label>
         </div>
+
+        <input type="file" name="image" onChange={handleImage} />
 
         <br />
         <button type="submit" className="btn btn-dark">
