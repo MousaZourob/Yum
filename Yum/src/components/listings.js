@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Listing from "./listing.js";
 import ListingForm from "./listingform.component";
 
-const Listings = () => {
+const Listings = (props) => {
   const [listings, setListings] = useState([]);
 
   useEffect(() => {
@@ -12,13 +12,21 @@ const Listings = () => {
     });
   }, []);
 
-  return (
-    <div>
-      {listings.map((listing) => {
+  function renderListings() {
+    if (props.userId === undefined) {
+      return listings.map((listing) => {
         return <Listing data={listing} />;
-      })}
-    </div>
-  );
+      });
+    } else {
+      return listings
+        .filter((listing) => listing.data.userId === props.userId)
+        .map((listing) => {
+          return <Listing data={listing} />;
+        });
+    }
+  }
+
+  return <div>{renderListings()}</div>;
 };
 
 export default Listings;

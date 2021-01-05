@@ -1,8 +1,8 @@
-const express = require('express');
+const router = require('express').Router();
 let Listing = require('../models/listing.model');
-const router = express.Router();
+const jwt = require('express-jwt');
 
-router.route('/get').get((req, res) => {
+router.get('/get', (req, res) => {
     console.log("Listing requested");
     Listing.find()
         .then(listings => res.json(listings))
@@ -11,10 +11,10 @@ router.route('/get').get((req, res) => {
     console.log("Listings Found")
 });
 
-router.route('/add').post((req, res) => {
+router.post('/add', jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] }), (req, res) => {
     const newListing = new Listing({
-        user_id: "",
-        name: req.body.name,
+        user_id: req.user._id,
+        name: req.user.name,
         title: req.body.title,
         description: req.body.description,
         restrictions: req.body.restrictions,

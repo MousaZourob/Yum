@@ -11,6 +11,7 @@ export default class Register extends Component {
 
         this.onSubmit = this.onSubmit.bind(this);
 
+        //State of Fields When Page First Loads
         this.state = {
             name: '',
             email: '',
@@ -39,7 +40,8 @@ export default class Register extends Component {
 
     async onSubmit(e) {
         e.preventDefault();
-
+        
+        //Create user object with all the neccesary fields
         const user = {
             name: this.state.name,
             password: this.state.password,
@@ -62,7 +64,8 @@ export default class Register extends Component {
             this.setState({resMessage: JSON.stringify(res.status)});
             console.log(this.state.resMessage);
         }
-        
+
+        //Reset Fields
         this.setState({
             name: '',
             email: '',
