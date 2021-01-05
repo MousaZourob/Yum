@@ -35,7 +35,7 @@ router.get('/get', function (req, res) {
     if (fs.existsSync(imagePath)) {
         res.sendFile(imagePath);
     } else {
-        res.status(404).send({ error: 'Image could not be found'});
+        res.sendFile(path.normalize(`${__dirname}/../assets/404.png`));
     }
 });
 
