@@ -50,6 +50,16 @@ function GuestGreeting(props) {
   )
 }
 
+function PersonalList(props) {
+  return (
+    <li className="navbar-item">
+      <Link to="/listings" params={localStorage.getItem("jwt")} className="nav-link">
+        My Listings
+      </Link>
+    </li>
+  )
+}
+
 function Greeting(props) {
   if (localStorage.getItem("jwt") && jwt_decode(localStorage.getItem("jwt")).name) {
     console.log("user")
@@ -74,6 +84,7 @@ export default class Navbar extends Component {
                 View Listings
               </Link>
             </li>
+            <PersonalList />
           </ul>
           <Greeting />
         </div>
