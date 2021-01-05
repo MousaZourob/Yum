@@ -4,16 +4,54 @@ import 'reactjs-popup/dist/index.css';
 import Popup from 'reactjs-popup';
 import { useForm } from "react-hook-form";
 import ListingForm from './listingform.component';
+import jwt_decode from "jwt-decode";
 
-const test = () => {
+function UserGreeting(props) {
   return (
-    <div>
-      <p>test test test</p>
-    </div>
-  );
-};
+    <ul className="navbar-nav navbar-right">
+      <li className="navbar-brand">
+        Hello {jwt_decode(localStorage.getItem("jwt")).name}
+      </li>
+      <li className="navbar-item">  
+        <Popup
+          trigger={<button className="btn btn-primary font-weight-bold"> Create Listing</button>}
+          modal
+          position="center">
+          <div><ListingForm/></div>
+        </Popup>
+      </li>
+    </ul>
+  )
+}
+
+function GuestGreeting(props) {
+  return (
+    <ul className="navbar-nav navbar-right">
+      <li className="navbar-item">
+        <Link to="/users/add" className="nav-link ml-auto">
+          Register
+        </Link>
+      </li>
+      <li className="navbar-item">
+        <Link to="/users/login" className="nav-link ml-auto">
+          Login
+        </Link>
+      </li>
+    </ul>
+  )
+}
+
+function Greeting(props) {
+  if (localStorage.getItem("jwt") && jwt_decode(localStorage.getItem("jwt")).name) {
+    console.log("user")
+    return <UserGreeting />;
+  }
+  console.log("guest")
+  return <GuestGreeting />;
+}
 
 export default class Navbar extends Component {
+
   render() {
     return (
       <nav className="navbar navbar-dark bg-primary navbar-expand-lg .text-white font-weight-bold font">
@@ -28,26 +66,7 @@ export default class Navbar extends Component {
               </Link>
             </li>
           </ul>
-          <ul className="navbar-nav navbar-right">
-            <li className="navbar-item">
-              <Link to="/users/add" className="nav-link ml-auto">
-                Register
-              </Link>
-            </li>
-            <li className="navbar-item">
-              <Link to="/users/login" className="nav-link ml-auto">
-                Login
-              </Link>
-            </li>
-            <li className="navbar-item">  
-              <Popup
-                trigger={<button className="btn btn-primary font-weight-bold"> Create Listing</button>}
-                modal
-                position="center">
-                <div><ListingForm/></div>
-              </Popup>
-            </li>
-          </ul>
+          <Greeting />
         </div>
       </nav>
     );
