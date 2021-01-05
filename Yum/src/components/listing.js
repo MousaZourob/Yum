@@ -41,7 +41,7 @@ const Listing = (props) => {
         <div class="row" style={{ borderRadius: "10px", marginTop: ".42%" }}>
           {/*PIC*/}
           <div class="col-md-6">
-            <img style={{ width: "100%", height: "100%", borderRadius: "10px" }} src="https://hips.hearstapps.com/del.h-cdn.co/assets/18/07/1518705462-80-chicken-mcnugget-happy-meal.jpg" alt="Italian Trulli"></img>  
+            <img style={{ width: "100%", height: "100%", borderRadius: "10px" }} src={`http://localhost:8000/images/get/${data.image}`} alt="Italian Trulli"></img>  
           </div>
           
           <div class="col-6" style = {{paddingRight: 24}}>
