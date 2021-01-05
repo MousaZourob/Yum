@@ -25,7 +25,7 @@ function UserGreeting(props) {
         </Popup>
       </li>
       <li className="navbar-item">
-        <Link to="/listings" className="nav-link ml-auto" onClick={LogOut}>
+        <Link to="/listings" className="nav-link ml-auto" style={{color:"white"}} onClick={LogOut}>
           Logout
         </Link>
       </li>
@@ -37,12 +37,12 @@ function GuestGreeting(props) {
   return (
     <ul className="navbar-nav navbar-right">
       <li className="navbar-item">
-        <Link to="/users/add" className="nav-link ml-auto">
+        <Link to="/users/add" className="nav-link ml-auto" style={{color:"white"}}>
           Register
         </Link>
       </li>
       <li className="navbar-item">
-        <Link to="/users/login" className="nav-link ml-auto">
+        <Link to="/users/login" className="nav-link ml-auto" style={{color:"white"}}>
           Login
         </Link>
       </li>
@@ -65,12 +65,12 @@ export default class Navbar extends Component {
     return (
       <nav className="navbar navbar-dark bg-primary navbar-expand-lg .text-white font-weight-bold font">
         <Link to="/" className="navbar-brand">
-          YUM
+          <h3 style={{fontWeight: "bold"}}>YUM</h3>
         </Link>
         <div className="collpase navbar-collapse">
           <ul className="navbar-nav mr-auto">
             <li className="navbar-item">
-              <Link to="/listings" className="nav-link">
+              <Link to="/listings" className="nav-link" style={{color:"white"}}>
                 View Listings
               </Link>
             </li>
