@@ -5,6 +5,7 @@ import Popup from 'reactjs-popup';
 import { useForm } from "react-hook-form";
 import ListingForm from './listingform.component';
 import jwt_decode from "jwt-decode";
+import "./styles.css";
 
 function LogOut(props) {
   localStorage.removeItem("jwt");
@@ -18,13 +19,13 @@ function UserGreeting(props) {
       </li>
       <li className="navbar-item">  
         <Popup
-          trigger={<button className="btn btn-primary font-weight-bold"> Create Listing</button>}
+          trigger={<div className="nav-link" style={{cursor: "pointer", color: "white"}}> Create Listing</div>}
           modal
           position="center">
           <div><ListingForm/></div>
         </Popup>
       </li>
-      <li className="navbar-item">
+      <li className="navbar-item" >
         <Link to="/listings" className="nav-link ml-auto" style={{color:"white"}} onClick={LogOut}>
           Logout
         </Link>
@@ -53,7 +54,7 @@ function GuestGreeting(props) {
 function PersonalList(props) {
   return (
     <li className="navbar-item">
-      <Link to="/listings" params={localStorage.getItem("jwt")} className="nav-link">
+      <Link to="/listings" params={localStorage.getItem("jwt")} className="nav-link" style={{color:"white"}}>
         My Listings
       </Link>
     </li>
@@ -73,8 +74,8 @@ export default class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-dark bg-primary navbar-expand-lg .text-white font-weight-bold font">
-        <Link to="/" className="navbar-brand">
+      <nav className="navbar navbar-dark navbar-expand-lg .text-white font-weight-bold background">
+        <Link to="/home" className="navbar-brand">
           <h3 style={{fontWeight: "bold"}}>YUM</h3>
         </Link>
         <div className="collpase navbar-collapse">
