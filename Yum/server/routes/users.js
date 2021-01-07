@@ -35,7 +35,7 @@ router.route("/add").post(async (req, res) => {
   });
 
   try {
-    //Save new user into database
+    // Save new user into database
     const user = await newUser.save();
     // Sign JWT token and send to client
     res.status(200).send({
