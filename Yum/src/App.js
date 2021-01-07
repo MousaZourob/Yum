@@ -7,16 +7,18 @@ import Register from "./components/register.component";
 import Login from "./components/login.component";
 import Listings from "./components/listings.js";
 import ListingForm from "./components/listingform.component";
+import Home from "./components/home";
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <br />
+      <br/>
       <Route path="/users/add" exact component={Register} />
       <Route path="/users/login" exact component={Login} />
       <Route path="/listings/add" exact component={ListingForm} />
       <Route path="/listings" exact component={Listings} />
+      {/*<Route path="/home" exact component={Home}/>*/}
     </Router>
   );
 }

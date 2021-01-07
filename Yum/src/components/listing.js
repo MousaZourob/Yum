@@ -52,17 +52,16 @@ const Listing = (props) => {
           {/*Basic Listing Info*/}
           <div class="card w-400">
             <div class="card-body" style={{ display: "flex" }}>
-              <img
-                style={{ width: "8%", height: "6%", borderRadius: "10px" }}
+              <img 
+                class = "col-xs-2"
+                style={{background: "lightgreen", width: "8%", height: "6%", borderRadius: "10px" }}
                 src={`http://localhost:8000/images/get/${data.image}`}
                 alt="Italian Trulli"
               ></img>
 
-              <div style={{ width: "28%", marginTop: "1%", marginLeft: "1%" }}>
+              <div class="col-sm-3" style={{background: "grey", width: "28%", marginTop: "1%", marginLeft: "1%", maxHeight: "inherit" }}>
                 <h3
                   style={{
-                    /*background: "grey", */
-
                     overflow: "hidden",
                     maxWidth: "100%",
                     padding: "1%",
@@ -78,18 +77,20 @@ const Listing = (props) => {
               </div>
 
               <p
+                class="col-sm-3"
                 style={{
-                  /*background: "lightblue",*/
+                  background: "lightblue",
                   /*fontFamily: "monospace, courier-new",*/
                   marginLeft: "0.5%",
                   marginTop: "1%",
                   width: "28%",
+                  textAlign: "justify"  
                 }}
               >
                 {desc}
               </p>
 
-              <div style={{ marginTop: "1%", marginLeft: "1%" }}>
+              <div class="col-sm-3" style={{ background: "darkgrey", marginTop: "1%"}}>
                 <p style={{ textAlign: "center", fontWeight: "bold" }}>
                   Restrictions:
                 </p>
@@ -138,7 +139,7 @@ const Listing = (props) => {
           {/*PIC*/}
           <div class="col-md-6">
             <img
-              style={{ width: "100%", height: "100%", borderRadius: "10px" }}
+              style={{width: "100%", height: "100%", borderRadius: "10px" }}
               src={`http://localhost:8000/images/get/${data.image}`}
               alt="Italian Trulli"
             ></img>
