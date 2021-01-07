@@ -17,6 +17,9 @@ function App() {
       <Route path="/users/login" exact component={Login} />
       <Route path="/listings/add" exact component={ListingForm} />
       <Route path="/listings" exact component={Listings} />
+      <Route path="/my_listings">
+        <Listings user_id={localStorage.getItem("jwt")} />
+      </Route>
     </Router>
   );
 }

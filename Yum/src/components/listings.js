@@ -7,10 +7,9 @@ import jwt_decode from "jwt-decode";
 const Listings = (props) => {
   const [listings, setListings] = useState([]);
   let userId;
-  if(localStorage.getItem("jwt")) {
+  if (localStorage.getItem("jwt")) {
     userId = jwt_decode(localStorage.getItem("jwt"))._id;
-  } 
- 
+  }
 
   useEffect(() => {
     axios.get("http://localhost:8000/listings/get").then((response) => {
@@ -19,13 +18,13 @@ const Listings = (props) => {
   }, []);
 
   function renderListings() {
-    if (props.userId === undefined) {
+    if (props.user_id === undefined) {
       return listings.map((listing) => {
         return <Listing data={listing} />;
       });
     } else {
       return listings
-        .filter((listing) => listing.data.user_id === props.userId)
+        .filter((listing) => listing.user_id === jwt_decode(props.user_id)._id)
         .map((listing) => {
           return <Listing data={listing} />;
         });
