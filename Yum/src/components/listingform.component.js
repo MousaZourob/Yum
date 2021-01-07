@@ -17,7 +17,7 @@ const ListingForm = () => {
     console.log({ ...data, restrictions: restrictions, name: "test" });
     axios({
       method: "post",
-      url: "http://localhost:8000/add",
+      url: "http://localhost:8000/listings/add",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },

@@ -11,7 +11,7 @@ const Listing = (props) => {
   var desc;
   var title;
 
-  var location = "Alley Behind Wendy's";
+  var location = "Place";
 
   if (props.data.description.length > 400) {
     desc = data.description.substr(0, 353) + "...";
@@ -54,12 +54,12 @@ const Listing = (props) => {
             <div class="card-body" style={{ display: "flex" }}>
               <img 
                 class = "col-xs-2"
-                style={{background: "lightgreen", width: "8%", height: "6%", borderRadius: "10px" }}
+                style={{ width: "8%", height: "6%", borderRadius: "10px" }}
                 src={`http://localhost:8000/images/get/${data.image}`}
                 alt="Italian Trulli"
               ></img>
 
-              <div class="col-sm-3" style={{background: "grey", width: "28%", marginTop: "1%", marginLeft: "1%", maxHeight: "inherit" }}>
+              <div class="col-sm-3" style={{width: "28%", marginTop: "1%", marginLeft: "1%", maxHeight: "inherit" }}>
                 <h3
                   style={{
                     overflow: "hidden",
@@ -79,7 +79,7 @@ const Listing = (props) => {
               <p
                 class="col-sm-3"
                 style={{
-                  background: "lightblue",
+                  
                   /*fontFamily: "monospace, courier-new",*/
                   marginLeft: "0.5%",
                   marginTop: "1%",
@@ -90,16 +90,17 @@ const Listing = (props) => {
                 {desc}
               </p>
 
-              <div class="col-sm-3" style={{ background: "darkgrey", marginTop: "1%"}}>
+              <div class="col-sm-3" style={{  marginTop: "1%"}}>
                 <p style={{ textAlign: "center", fontWeight: "bold" }}>
                   Restrictions:
                 </p>
                 <ul
                   style={{
                     columnCount: 3,
+                    width: "70%",
                     wordWrap: "break-word",
                     columnGap: 25,
-                    margin: "4%",
+                    marginLeft: "10%"
                   }}
                 >
                   {restrictions.map((restriction) => {
