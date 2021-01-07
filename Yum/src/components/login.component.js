@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-function refreshPage() {
-    window.location.reload(true);
-}
-
 export default class Login extends Component {
     constructor(props) {
         super(props);
@@ -61,6 +57,7 @@ export default class Login extends Component {
             email: '',
             password: ''
         })
+        window.location.reload(true);
     }
     
     render() {
@@ -97,7 +94,7 @@ export default class Login extends Component {
                     <h3 className="error"> Success! </h3> }
 
                     <div className="form-group">
-                        <input type="submit" value="Login" className="btn btn-primary" onClick={refreshPage}/>
+                        <input type="submit" value="Login" className="btn btn-primary"/>
                     </div>
                 </form>
             </div>

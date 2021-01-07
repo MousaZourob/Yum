@@ -87,14 +87,15 @@ const ListingForm = () => {
                 required: "Required",
               })}
               className="form-control"
-              style={{ height: 169, width: 420 }}
+              style={{ height: "160px", width: "240%" }}
             />
           </label>
         </div>
 
-        <div>
+        <div style={{fontWeight: "bold"}}>
           Location
           <input
+            style={{marginLeft: "1%", marginTop: "2%"}}
             type="text"
             name="location"
             ref={register({
@@ -109,7 +110,7 @@ const ListingForm = () => {
         </div>
 
         <div>
-          <label className="font-weight-bold">
+          <label className="font-weight-bold" style={{marginTop: "2%"}}>
             Dietary Restrictions
             <CreatableSelect
               isMulti
@@ -119,11 +120,14 @@ const ListingForm = () => {
             />
           </label>
         </div>
-
-        <input type="file" name="image" onChange={handleImage} />
+        <div class="font-weight-bold" style={{marginTop: "2%"}}>
+          Upload Image:
+          <input style={{marginLeft:"1%"}} type="file" name="image" onChange={handleImage} />
+        </div>
+        
 
         <br />
-        <button type="submit" className="btn btn-dark">
+        <button style={{marginTop: "2%"}} type="submit" className="btn btn-dark">
           Create Listing
         </button>
       </form>

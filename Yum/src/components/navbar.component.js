@@ -33,7 +33,7 @@ function UserGreeting(props) {
         </li>
         <li className="navbar-item">  
           <Popup
-            trigger={<button className="btn btn-primary font-weight-bold"> Create Listing</button>}
+            trigger={<div style={{cursor:"pointer"}} className="nav-link font-weight-bold"> Create Listing</div>}
             modal
             position="center">
             <div><ListingForm/></div>

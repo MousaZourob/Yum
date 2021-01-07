@@ -6,7 +6,11 @@ import jwt_decode from "jwt-decode";
 
 const Listings = (props) => {
   const [listings, setListings] = useState([]);
-  const userID = jwt_decode(localStorage.getItem("jwt"))._id;
+  let userId;
+  if(localStorage.getItem("jwt")) {
+    userId = jwt_decode(localStorage.getItem("jwt"))._id;
+  } 
+ 
 
   useEffect(() => {
     axios.get("http://localhost:8000/listings/get").then((response) => {

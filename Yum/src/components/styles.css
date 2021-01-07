@@ -30,6 +30,7 @@ h3 {
 
 .nav-link {
     transition: transform .2s;
+    color: white !important;
 }
 
 .nav-link:hover {
@@ -45,4 +46,8 @@ h3 {
     width: 120%;
     font-weight: bold;
     
+}
+
+.carousel-item{
+    height: 400px;
 }
