@@ -4,15 +4,20 @@ import CreatableSelect from "react-select/creatable";
 import axios from "axios";
 
 const ListingForm = () => {
-  const { register, handleSubmit } = useForm({});
+  const { register, handleSubmit, errors } = useForm({
+    mode: "onBlur",
+  });
   const [restrictions, setRestrictions] = useState([]);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState("");
 
   function createListing(data, restrictions) {
+    data.location = data.location.replace("-", "");
+    data.location = data.location.replace(" ", "");
+    data.location = data.location.toUpperCase();
     console.log({ ...data, restrictions: restrictions, name: "test" });
     axios({
       method: "post",
-      url: "http://localhost:8000/listings/add",
+      url: "http://localhost:8000/add",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
@@ -39,21 +44,21 @@ const ListingForm = () => {
 
   const handleImage = (e) => {
     const formData = new FormData();
-    formData.append('image', e.target.files[0]);
+    formData.append("image", e.target.files[0]);
     axios({
-      method: 'post',
-      url: 'http://localhost:8000/images/upload',
+      method: "post",
+      url: "http://localhost:8000/images/upload",
       validateStatus: null,
-      data: formData
-    }).then(res => {
+      data: formData,
+    }).then((res) => {
       if (res.status === 200) {
         console.log(res.data.filename);
         setImage(res.data.filename);
       } else {
-        console.log(`Upload failed with res status ${res.status}`)
+        console.log(`Upload failed with res status ${res.status}`);
       }
     });
-  }
+  };
 
   return (
     <div className="form-group container">
@@ -64,7 +69,9 @@ const ListingForm = () => {
             <input
               type="text"
               name="title"
-              ref={register}
+              ref={register({
+                required: "Required",
+              })}
               className="form-control"
             />
           </label>
@@ -76,11 +83,29 @@ const ListingForm = () => {
             <textarea
               type="text"
               name="description"
-              ref={register}
+              ref={register({
+                required: "Required",
+              })}
               className="form-control"
               style={{ height: 169, width: 420 }}
             />
           </label>
+        </div>
+
+        <div>
+          Location
+          <input
+            type="text"
+            name="location"
+            ref={register({
+              required: "Required",
+              pattern: {
+                value: /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i,
+                message: "Invalid Postal Code",
+              },
+            })}
+          />
+          {errors.location && <span>{errors.location.message}</span>}
         </div>
 
         <div>

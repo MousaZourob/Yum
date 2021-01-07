@@ -1,3 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@700&display=swap');
+
+p{
+    font-family: 'Titillium Web', sans-serif;
+}
+
+h3 {
+    font-family: 'Karla', sans-serif;
+}
+
+.background{
+    background: linear-gradient(to right, #99ccff 0%, #3366ff 100%);
+    
+}
+
 .listItem {
     background-color: "#cccccc";
     border-radius: 10px;
@@ -10,4 +26,23 @@
 
 .card:hover {
     transform: scale(1.018);
+}
+
+.nav-link {
+    transition: transform .2s;
+}
+
+.nav-link:hover {
+    transform: scale(1.1);
+}
+
+.tag {
+    background-color: #ccebff;
+    border-radius: 20px;
+    padding: 2%;    
+    text-align: center;
+    vertical-align: middle;
+    width: 120%;
+    font-weight: bold;
+    
 }

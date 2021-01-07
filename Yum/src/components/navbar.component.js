@@ -5,6 +5,7 @@ import Popup from 'reactjs-popup';
 import { useForm } from "react-hook-form";
 import ListingForm from './listingform.component';
 import jwt_decode from "jwt-decode";
+import "./styles.css";
 
 function LogOut(props) {
   localStorage.removeItem("jwt");
@@ -46,7 +47,7 @@ function UserGreeting(props) {
     </div>
   )
 }
-// my listings/refresh
+
 function GuestGreeting(props) {
   return (
     <div className="collpase navbar-collapse">
@@ -73,16 +74,6 @@ function GuestGreeting(props) {
   )
 }
 
-function PersonalList(props) {
-  return (
-    <li className="navbar-item">
-      <Link to="/listings" params={localStorage.getItem("jwt")} className="nav-link">
-        My Listings
-      </Link>
-    </li>
-  )
-}
-
 function Greeting(props) {
   if (localStorage.getItem("jwt") && jwt_decode(localStorage.getItem("jwt")).name) {
     return <UserGreeting />;
@@ -94,8 +85,8 @@ export default class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-dark bg-primary navbar-expand-lg .text-white font-weight-bold font">
-        <Link to="/" className="navbar-brand">
+      <nav className="navbar navbar-dark navbar-expand-lg .text-white font-weight-bold background">
+        <Link to="/home" className="navbar-brand">
           <h3 style={{fontWeight: "bold"}}>YUM</h3>
         </Link>
         <div className="collpase navbar-collapse">
