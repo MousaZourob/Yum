@@ -26,7 +26,7 @@ const Listings = (props) => {
       return listings
         .filter((listing) => listing.user_id === jwt_decode(props.user_id)._id)
         .map((listing) => {
-          return <Listing data={listing} />;
+          return <Listing data={listing} editable={true}/>;
         });
     }
   }
