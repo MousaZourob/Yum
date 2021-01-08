@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 import axios from "axios";
@@ -9,12 +9,14 @@ const ListingForm = () => {
   });
   const [restrictions, setRestrictions] = useState([]);
   const [image, setImage] = useState("");
+  const [location, setLocation] = useState("");
 
   function createListing(data, restrictions) {
     data.location = data.location.replace("-", "");
     data.location = data.location.replace(" ", "");
     data.location = data.location.toUpperCase();
-    console.log({ ...data, restrictions: restrictions, name: "test" });
+    getLocationData(data.location);
+    data.location = location;
     axios({
       method: "post",
       url: "http://localhost:8000/listings/add",
@@ -26,7 +28,20 @@ const ListingForm = () => {
   }
 
   function Refresh(props) {
-    window.location.reload(true);
+    window.location = (`/listings`);
+  }
+
+  async function getLocationData(postcode) {
+    console.log(postcode);
+    axios({
+      method: "post",
+      url: "http://localhost:8000/listing/location",
+      data: { post_code: postcode },
+    }).then((res) => {
+      if (res.data.status == "OK") {
+        setLocation(JSON.stringify(res.data.results[0].geometry));
+      }
+    });
   }
 
   const onSubmit = (values) => {
@@ -96,10 +111,10 @@ const ListingForm = () => {
           </label>
         </div>
 
-        <div style={{fontWeight: "bold"}}>
-          Location
+        <div style={{ fontWeight: "bold" }}>
+          Postal Code
           <input
-            style={{marginLeft: "1%", marginTop: "2%"}}
+            style={{ marginLeft: "1%", marginTop: "2%" }}
             type="text"
             name="location"
             ref={register({
@@ -114,7 +129,7 @@ const ListingForm = () => {
         </div>
 
         <div>
-          <label className="font-weight-bold" style={{marginTop: "2%"}}>
+          <label className="font-weight-bold" style={{ marginTop: "2%" }}>
             Dietary Restrictions
             <CreatableSelect
               isMulti
@@ -124,14 +139,23 @@ const ListingForm = () => {
             />
           </label>
         </div>
-        <div class="font-weight-bold" style={{marginTop: "2%"}}>
+        <div class="font-weight-bold" style={{ marginTop: "2%" }}>
           Upload Image:
-          <input style={{marginLeft:"1%"}} type="file" name="image" onChange={handleImage} />
+          <input
+            style={{ marginLeft: "1%" }}
+            type="file"
+            name="image"
+            onChange={handleImage}
+          />
         </div>
-        
 
         <br />
-        <button style={{marginTop: "2%"}} type="submit" className="btn btn-dark" onClick={Refresh}>
+        <button
+          style={{ marginTop: "2%" }}
+          type="submit"
+          className="btn btn-dark"
+          onClick={Refresh}
+        >
           Create Listing
         </button>
       </form>

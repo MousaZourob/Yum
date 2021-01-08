@@ -8,7 +8,6 @@ const client = new Client({});
 router.post("/location", (req, res) => {
   const location = req.body.post_code;
   let latLong = {};
-  console.log("requested" + location);
   client
     .geocode(
       {
@@ -20,10 +19,7 @@ router.post("/location", (req, res) => {
       },
       defaultAxiosInstance
     )
-    .then((response) => {
-      console.log("Found data");
-      console.log(response.data);
-    });
+    .then((response) => res.send(response.data));
 });
 
 module.exports = router;
