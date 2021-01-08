@@ -6,15 +6,16 @@ import jwt_decode from "jwt-decode";
 
 const Listings = (props) => {
   const [listings, setListings] = useState([]);
-  let userId;
-  if (localStorage.getItem("jwt")) {
-    userId = jwt_decode(localStorage.getItem("jwt"))._id;
-  }
+  const [position, setPosition] = useState({});
 
   useEffect(() => {
     axios.get("http://localhost:8000/listings/get").then((response) => {
       setListings(response.data);
     });
+    const geo = navigator.geolocation;
+    if (geo) {
+      setPosition(geo.getCurrentPosition(() => {}));
+    }
   }, []);
 
   function renderListings() {
@@ -26,7 +27,8 @@ const Listings = (props) => {
       return listings
         .filter((listing) => listing.user_id === jwt_decode(props.user_id)._id)
         .map((listing) => {
-          return <Listing data={listing} editable={true}/>;
+          console.log(JSON.parse(listing.location));
+          return <Listing data={listing} editable={true} />;
         });
     }
   }
