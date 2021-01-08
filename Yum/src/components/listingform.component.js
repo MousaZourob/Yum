@@ -17,12 +17,17 @@ const ListingForm = () => {
     console.log({ ...data, restrictions: restrictions, name: "test" });
     axios({
       method: "post",
-      url: "http://localhost:8000/add",
+      url: "http://localhost:8000/listings/add",
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       data: { ...data, restrictions: restrictions, name: "test", image: image },
     });
+  }
+
+  function LogOut(props) {
+    localStorage.removeItem("jwt");
+    window.location.reload(true);
   }
 
   const onSubmit = (values) => {
@@ -127,7 +132,7 @@ const ListingForm = () => {
         
 
         <br />
-        <button style={{marginTop: "2%"}} type="submit" className="btn btn-dark">
+        <button style={{marginTop: "2%"}} type="submit" className="btn btn-dark" onClick={LogOut}>
           Create Listing
         </button>
       </form>

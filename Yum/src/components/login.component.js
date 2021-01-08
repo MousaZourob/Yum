@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 export default class Login extends Component {
     constructor(props) {
@@ -92,7 +93,7 @@ export default class Login extends Component {
                     <h3 className="error"> User does not exist or incorrent password! </h3> }
                     { this.state.resMessage == 200 &&
                     <h3 className="error"> Success! </h3> }
-
+                    
                     <div className="form-group">
                         <input type="submit" value="Login" className="btn btn-primary"/>
                     </div>
