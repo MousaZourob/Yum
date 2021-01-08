@@ -26,35 +26,33 @@ router.post(
     });
 
     //Save new listing into database
-<<<<<<< HEAD
-    newListing.save() 
-    .then(() => res.json('Listing added!'))
-    .catch(err => res.status(400).json('Error: ' + err));
-=======
     newListing
       .save()
       .then(() => res.json("Listing added!"))
       .catch((err) => res.status(400).json("Error: " + err));
->>>>>>> listings
 
     console.log("New listing added");
   }
 );
 
-<<<<<<< HEAD
-router.put('/update', jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] }), (req, res) => {
-    Listing.updateOne({"_id": jwt._id})
-    .then(() => res.json('Listing deleted!'))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
+router.put(
+  "/update",
+  jwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
+  (req, res) => {
+    Listing.updateOne({ _id: jwt._id })
+      .then(() => res.json("Listing deleted!"))
+      .catch((err) => res.status(400).json("Error: " + err));
+  }
+);
 
-router.delete('/delete', jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] }), (req, res) => {
-    Listing.deleteOne({"_id": jwt._id})
-    .then(() => res.json('Listing deleted!'))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
+router.delete(
+  "/delete",
+  jwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
+  (req, res) => {
+    Listing.deleteOne({ _id: jwt._id })
+      .then(() => res.json("Listing deleted!"))
+      .catch((err) => res.status(400).json("Error: " + err));
+  }
+);
 
 module.exports = router;
-=======
-module.exports = router;
->>>>>>> listings
