@@ -54,13 +54,16 @@ export default class Login extends Component {
             console.log(this.state.resMessage);
         }
         
+        if (this.state.resMessage && this.state.resMessage == 200) {
+            window.location = (`/listings`);
+        }
+
         this.setState({
             email: '',
             password: ''
         })
-        window.location = ('/listings')
     }
-    
+
     render() {
         return (
             <div className="container" >
