@@ -1,3 +1,4 @@
+const Mongoose = require('mongoose')
 const router = require('express').Router();
 let Listing = require('../models/listing.model');
 const jwt = require('express-jwt');
@@ -31,13 +32,13 @@ router.post('/add', jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] 
 });
 
 router.put('/update', jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] }), (req, res) => {
-    Listing.updateOne({"_id": jwt._id})
+    Listing.updateOne({"_id": req.user._id})
     .then(() => res.json('Listing deleted!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
 router.delete('/delete', jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] }), (req, res) => {
-    Listing.deleteOne({"_id": jwt._id})
+    Listing.deleteOne({"user_id": req.user._id, "_id": Mongoose.Types.ObjectId(req.body._id)})
     .then(() => res.json('Listing deleted!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
