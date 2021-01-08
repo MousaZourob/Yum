@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Listing from "./listing.js";
-import ListingForm from "./listingform.component";
 import jwt_decode from "jwt-decode";
 
 const Listings = (props) => {
@@ -16,7 +15,7 @@ const Listings = (props) => {
       setListings(response.data);
     });
   }, []);
-
+  
   function renderListings() {
     if (props.user_id === undefined) {
       return listings.map((listing) => {
