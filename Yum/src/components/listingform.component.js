@@ -25,8 +25,7 @@ const ListingForm = () => {
     });
   }
 
-  function LogOut(props) {
-    localStorage.removeItem("jwt");
+  function Refresh(props) {
     window.location.reload(true);
   }
 
@@ -132,7 +131,7 @@ const ListingForm = () => {
         
 
         <br />
-        <button style={{marginTop: "2%"}} type="submit" className="btn btn-dark" onClick={LogOut}>
+        <button style={{marginTop: "2%"}} type="submit" className="btn btn-dark" onClick={Refresh}>
           Create Listing
         </button>
       </form>

@@ -9,7 +9,7 @@ import "./styles.css";
 
 function LogOut(props) {
   localStorage.removeItem("jwt");
-  window.location.reload(true);
+  window.location = (`/listings`);
 }
 
 function UserGreeting(props) {

@@ -58,7 +58,7 @@ export default class Login extends Component {
             email: '',
             password: ''
         })
-        window.location.reload(true);
+        window.location = ('/listings')
     }
     
     render() {

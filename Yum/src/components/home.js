@@ -9,10 +9,10 @@ import Listing from "./listing.js"
 
 function Home() {
     
-
+//
     return (
         <div>
-            <Carousel >
+            {/* <Carousel >
                 <Carousel.Item style={{background: "lightgreen"}}>
                     <div>{renderListings}</div>
                 </Carousel.Item>
@@ -40,7 +40,7 @@ function Home() {
                         <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
                     </Carousel.Caption>
                 </Carousel.Item>
-            </Carousel>
+            </Carousel> */}
 
             
             <div>
