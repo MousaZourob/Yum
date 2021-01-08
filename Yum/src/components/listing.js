@@ -69,6 +69,17 @@ const Listing = (props) => {
     }
   };
 
+  const renderEdits = () => {
+    if (props.editable) {
+      return (
+        <div>
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      );
+    }
+  };
+
   return (
     <Popup
       className="listing"
@@ -147,6 +158,7 @@ const Listing = (props) => {
                 </ul>
               </div>
             </div>
+            {renderEdits()}
           </div>
         </div>
       }
