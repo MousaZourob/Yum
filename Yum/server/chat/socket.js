@@ -11,7 +11,6 @@ module.exports = function (server) {
     io.on("connection", (socket) => {
         console.log('connected');
         const { roomID } = socket.handshake.query;
-        const roomInfo = ChatRoom.findOne({ _id: ChatRoom.ObjectId(roomID)});
         socket.join(roomID);
 
         socket.on("newChatMessage", async (data) => {
@@ -20,7 +19,7 @@ module.exports = function (server) {
                 room: roomID,
                 message: data.message
             });
-            console.log(message.toObject());
+
             await message.save();
             io.in(roomID).emit("newChatMessage", data);
         });
