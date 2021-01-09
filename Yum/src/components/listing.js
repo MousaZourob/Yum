@@ -140,17 +140,16 @@ const Listing = (props) => {
               </p>
 
               <div class="col-sm-3" style={{ marginTop: "1%" }}>
-                <p style={{ textAlign: "center", fontWeight: "bold" }}>
+                <p style={{ textAlign: "center", fontWeight: "bold", marginLeft: "14%" }}>
                   Restrictions:
                 </p>
                 <ul
                   style={{
+                    width: "100%",
                     columnCount: 3,
-                    width: "70%",
-                    wordWrap: "break-word",
                     columnGap: 25,
-                    marginLeft: "10%",
-                  }}
+                    
+                }}
                 >
                   {restrictions.map((restriction) => {
                     return <p class="tag">{restriction.label}</p>;

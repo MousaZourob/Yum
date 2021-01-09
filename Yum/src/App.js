@@ -21,6 +21,7 @@ function App() {
       <Route path="/my_listings">
         <Listings user_id={localStorage.getItem("jwt")} />
       </Route>
+      <Route path="/home" exact component={Home}/>
     </Router>
   );
 }
