@@ -5,6 +5,7 @@ import "./styles.css";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import ReactMapGL, { Marker, Layer } from "react-map-gl";
+import ListingForm from "./listingform.component";
 
 const Listing = (props) => {
   const data = props.data;
@@ -72,12 +73,40 @@ const Listing = (props) => {
   };
 
   async function deleteListing() {
-    /* const res = await axios({
-      method: 'delete',
-      url: 'http://localhost:8000/listings/update',
-      validateStatus: null,
-      data: user
-    }); */
+    const res = await axios({
+    method: 'delete',
+    url: 'http://localhost:8000/listings/delete',
+    validateStatus: null,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
+    },
+    data: {
+      _id: data.listing_id
+    }
+  });
+  window.location = ('/my_listings')
+}
+
+  async function editListing() {
+    <Popup
+      trigger={
+        <div
+          style={{ cursor: "pointer" }}
+          className="nav-link font-weight-bold"
+        >
+          {" "}
+          Create Listing
+        </div>
+      }
+      modal
+      position="center"
+  >
+    <div>
+      <ListingForm />
+    </div>
+  </Popup>
+
+  window.location = ('/my_listings')
   }
 
   const renderEdits = () => {
@@ -195,7 +224,6 @@ const Listing = (props) => {
               </div>
             </div>
           </div>
-          
         </div>
       }
       modal
