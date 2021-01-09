@@ -52,3 +52,8 @@ h3 {
 .carousel-item{
     height: 400px;
 }
+
+.sentMessage {
+    background: linear-gradient(to top right, #00ffff -15%, #3366ff 87%);
+    color: white
+}

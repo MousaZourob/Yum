@@ -74,18 +74,18 @@ const Listing = (props) => {
 
   async function deleteListing() {
     const res = await axios({
-      method: 'delete',
-      url: 'http://localhost:8000/listings/delete',
-      validateStatus: null,
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`
-      },
-      data: {
-        _id: data.listing_id
-      }
-    });
-    window.location = ('/my_listings')
-  }
+    method: 'delete',
+    url: 'http://localhost:8000/listings/delete',
+    validateStatus: null,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwt")}`
+    },
+    data: {
+      _id: data.listing_id
+    }
+  });
+  window.location = ('/my_listings')
+}
 
   async function editListing() {
     <Popup
@@ -113,8 +113,14 @@ const Listing = (props) => {
     if (props.editable) {
       return (
         <div>
-          <button onClick={editListing}>Edit</button>
-          <button onClick={deleteListing}>Delete</button>
+          <button
+          class="btn"
+          style={{backgroundColor: "#ccebff", textAlign: "center", width: "100%"}}
+          >Edit  </button>
+          <button
+          class="btn"
+          style={{ marginTop: "8%",backgroundColor: "#ccebff", textAlign: "center", width: "100%"}}
+          >Delete</button>
         </div>
       );
     }
@@ -122,18 +128,18 @@ const Listing = (props) => {
 
   const startChat = async () => {
     const newChat = await axios({
-      method: 'post',
-      url: 'http://localhost:8000/chat/newconvo',
+      method: "post",
+      url: "http://localhost:8000/chat/newconvo",
       data: {
-        contactID: data.user_id
+        contactID: data.user_id,
       },
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`
-      }
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
     });
-    
+
     window.location = `/chat?open=${newChat.data.roomID}`;
-  }
+  };
 
   return (
     <Popup
@@ -195,7 +201,13 @@ const Listing = (props) => {
               </p>
 
               <div class="col-sm-3" style={{ marginTop: "1%" }}>
-                <p style={{ textAlign: "center", fontWeight: "bold", marginLeft: "14%" }}>
+                <p
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    marginLeft: "14%",
+                  }}
+                >
                   Restrictions:
                 </p>
                 <ul
@@ -203,8 +215,7 @@ const Listing = (props) => {
                     width: "100%",
                     columnCount: 3,
                     columnGap: 25,
-                    
-                }}
+                  }}
                 >
                   {restrictions.map((restriction) => {
                     return <p class="tag">{restriction.label}</p>;
@@ -227,8 +238,9 @@ const Listing = (props) => {
             width: "100%",
           }}
         >
-          <div class="row" style={{ padding: 5, borderRadius: "10px" }}>
+          <div class="row" style={{ background: "#cccccc", padding: 5, borderRadius: "10px" , margin: "0"}}>
             <div
+              class="col-sm-10" 
               style={{
                 background: "#cccccc",
                 width: "100%",
@@ -238,13 +250,14 @@ const Listing = (props) => {
             >
               <h1 style={{ marginLeft: "1%" }}>{data.title}</h1>
             </div>
+            <div class="col-sm-2">{renderEdits()}</div>
           </div>
 
           <div class="row" style={{ borderRadius: "10px", marginTop: ".42%" }}>
             {/*PIC*/}
             <div class="col-md-6">
               <img
-                style={{ width: "100%", height: "100%", borderRadius: "10px" }}
+                style={{ marginTop: "2%", width: "100%", height: "auto", borderRadius: "10px", objectFit: "fill" }}
                 src={`http://localhost:8000/images/get/${data.image}`}
                 alt="Italian Trulli"
               ></img>
@@ -296,13 +309,15 @@ const Listing = (props) => {
                 </ul>
               </div>
               <div>
-                {(localStorage.getItem("jwt") && jwt_decode(localStorage.getItem("jwt"))._id !== data.user_id) ? <button onClick={() => startChat()}>Chat</button> : null}
+                {localStorage.getItem("jwt") &&
+                jwt_decode(localStorage.getItem("jwt"))._id !== data.user_id ? (
+                  <button onClick={() => startChat()}>Chat</button>
+                ) : null}
               </div>
             </div>
           </div>
         </div>
       }
-      {renderEdits()}
     </Popup>
   );
 };
