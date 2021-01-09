@@ -3,6 +3,7 @@ import Messages from "./messages.component";
 import Conversation from "./conversation.component";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import queryString from "query-string";
 
 function MessagePage() {
   const [conversations, setConversations] = useState([]);
@@ -19,6 +20,8 @@ function MessagePage() {
       }
     }).then(res => {
       setConversations(res.data);
+      const openConvo = res.data.filter(convo => convo.roomID === queryString.parse(window.location.search).open);
+      setCurrentConvo((openConvo.length > 0) ? openConvo[0] : null);
     })
   }, []);
 
