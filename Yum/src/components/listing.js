@@ -195,7 +195,7 @@ const Listing = (props) => {
               </div>
             </div>
           </div>
-          {renderEdits()}
+          
         </div>
       }
       modal
