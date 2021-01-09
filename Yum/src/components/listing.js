@@ -5,6 +5,7 @@ import "./styles.css";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import ReactMapGL, { Marker, Layer } from "react-map-gl";
+import ListingForm from "./listingform.component";
 
 const Listing = (props) => {
   const data = props.data;
@@ -74,18 +75,46 @@ const Listing = (props) => {
   async function deleteListing() {
     const res = await axios({
       method: 'delete',
-      url: 'http://localhost:8000/listings/update',
+      url: 'http://localhost:8000/listings/delete',
       validateStatus: null,
-      data: user
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`
+      },
+      data: {
+        _id: data.listing_id
+      }
     });
+    window.location = ('/my_listings')
+  }
+
+  async function editListing() {
+    <Popup
+      trigger={
+        <div
+          style={{ cursor: "pointer" }}
+          className="nav-link font-weight-bold"
+        >
+          {" "}
+          Create Listing
+        </div>
+      }
+      modal
+      position="center"
+  >
+    <div>
+      <ListingForm />
+    </div>
+  </Popup>
+
+  window.location = ('/my_listings')
   }
 
   const renderEdits = () => {
     if (props.editable) {
       return (
         <div>
-          <button>Edit</button>
-          <button>Delete</button>
+          <button onClick={editListing}>Edit</button>
+          <button onClick={deleteListing}>Delete</button>
         </div>
       );
     }
@@ -184,7 +213,6 @@ const Listing = (props) => {
               </div>
             </div>
           </div>
-          {renderEdits()}
         </div>
       }
       modal
@@ -274,6 +302,7 @@ const Listing = (props) => {
           </div>
         </div>
       }
+      {renderEdits()}
     </Popup>
   );
 };
