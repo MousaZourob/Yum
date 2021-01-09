@@ -72,12 +72,12 @@ const Listing = (props) => {
   };
 
   async function deleteListing() {
-    const res = await axios({
+    /* const res = await axios({
       method: 'delete',
       url: 'http://localhost:8000/listings/update',
       validateStatus: null,
       data: user
-    });
+    }); */
   }
 
   const renderEdits = () => {
@@ -99,18 +99,18 @@ const Listing = (props) => {
 
   const startChat = async () => {
     const newChat = await axios({
-      method: 'post',
-      url: 'http://localhost:8000/chat/newconvo',
+      method: "post",
+      url: "http://localhost:8000/chat/newconvo",
       data: {
-        contactID: data.user_id
+        contactID: data.user_id,
       },
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`
-      }
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      },
     });
-    
+
     window.location = `/chat?open=${newChat.data.roomID}`;
-  }
+  };
 
   return (
     <Popup
@@ -172,7 +172,13 @@ const Listing = (props) => {
               </p>
 
               <div class="col-sm-3" style={{ marginTop: "1%" }}>
-                <p style={{ textAlign: "center", fontWeight: "bold", marginLeft: "14%" }}>
+                <p
+                  style={{
+                    textAlign: "center",
+                    fontWeight: "bold",
+                    marginLeft: "14%",
+                  }}
+                >
                   Restrictions:
                 </p>
                 <ul
@@ -180,8 +186,7 @@ const Listing = (props) => {
                     width: "100%",
                     columnCount: 3,
                     columnGap: 25,
-                    
-                }}
+                  }}
                 >
                   {restrictions.map((restriction) => {
                     return <p class="tag">{restriction.label}</p>;
@@ -276,7 +281,10 @@ const Listing = (props) => {
                 </ul>
               </div>
               <div>
-                {(localStorage.getItem("jwt") && jwt_decode(localStorage.getItem("jwt"))._id !== data.user_id) ? <button onClick={() => startChat()}>Chat</button> : null}
+                {localStorage.getItem("jwt") &&
+                jwt_decode(localStorage.getItem("jwt"))._id !== data.user_id ? (
+                  <button onClick={() => startChat()}>Chat</button>
+                ) : null}
               </div>
             </div>
           </div>

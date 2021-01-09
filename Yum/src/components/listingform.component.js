@@ -28,7 +28,7 @@ const ListingForm = () => {
   }
 
   function Refresh(props) {
-    window.location = (`/listings`);
+    window.location = `/listings`;
   }
 
   async function getLocationData(postcode) {
@@ -90,6 +90,7 @@ const ListingForm = () => {
               name="title"
               ref={register({
                 required: "Required",
+                maxLength: 60,
               })}
               className="form-control"
             />
@@ -104,6 +105,7 @@ const ListingForm = () => {
               name="description"
               ref={register({
                 required: "Required",
+                maxLength: 350,
               })}
               className="form-control"
               style={{ height: "160px", width: "240%" }}
