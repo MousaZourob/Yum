@@ -114,10 +114,12 @@ const Listing = (props) => {
       return (
         <div>
           <button
+          onClick={editListing}
           class="btn"
           style={{backgroundColor: "#ccebff", textAlign: "center", width: "100%"}}
           >Edit  </button>
           <button
+          onClick={deleteListing}
           class="btn"
           style={{ marginTop: "8%",backgroundColor: "#ccebff", textAlign: "center", width: "100%"}}
           >Delete</button>
