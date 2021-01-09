@@ -11,7 +11,7 @@ function Message(props) {
       className = "receivedMessage";
     }
     return (
-      <p className={className} style={{backgroundColor: "light-grey"}}>
+      <p className={className} style={{ backgroundColor: "light-grey" }}>
         {props.data.message}
       </p>
     );
