@@ -20,7 +20,7 @@ function Messages(props) {
     socketRef.current.on("newChatMessage", (incomingMessage) => {
       setMessages((messages) => [...messages, incomingMessage]);
     });
-  }, []);
+  }, [props.data.roomID]);
 
   const sendMessage = (message) => {
     socketRef.current.emit("newChatMessage", {
