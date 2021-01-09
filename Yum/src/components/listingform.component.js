@@ -9,15 +9,11 @@ const ListingForm = () => {
   });
   const [restrictions, setRestrictions] = useState([]);
   const [image, setImage] = useState("");
-  const [location, setLocation] = useState("");
 
-  function createListing(data, restrictions) {
-    data.location = data.location.replace("-", "");
-    data.location = data.location.replace(" ", "");
-    data.location = data.location.toUpperCase();
-    getLocationData(data.location);
-    data.location = location;
-    axios({
+  async function createListing(data, restrictions) {
+    data.location = data.location.replace("-", "").replace(" ", "").toUpperCase();
+    data.location = await getLocationData(data.location);
+    await axios({
       method: "post",
       url: "http://localhost:8000/listings/add",
       headers: {
@@ -25,28 +21,26 @@ const ListingForm = () => {
       },
       data: { ...data, restrictions: restrictions, name: "test", image: image },
     });
-  }
 
-  function Refresh(props) {
     window.location = `/listings`;
   }
 
   async function getLocationData(postcode) {
     console.log(postcode);
-    axios({
+    const res = await axios({
       method: "post",
       url: "http://localhost:8000/listing/location",
       data: { post_code: postcode },
-    }).then((res) => {
-      if (res.data.status == "OK") {
-        setLocation(JSON.stringify(res.data.results[0].geometry));
-      }
     });
+    if (res.data.status === "OK") {
+      return JSON.stringify(res.data.results[0].geometry)
+    }
   }
 
-  const onSubmit = (values) => {
-    createListing(values, JSON.stringify(restrictions));
+  const onSubmit = async (values) => {
+    await createListing(values, JSON.stringify(restrictions));
     setRestrictions([]);
+    
   };
 
   const options = [
@@ -156,7 +150,6 @@ const ListingForm = () => {
           style={{ marginTop: "2%" }}
           type="submit"
           className="btn btn-dark"
-          onClick={Refresh}
         >
           Create Listing
         </button>
