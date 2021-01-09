@@ -257,7 +257,10 @@ const Listing = (props) => {
               <h1 style={{ marginLeft: "1%" }}>{data.title}</h1>
             </div>
             <div class="col-sm-4" style={{width: "100%"}}>{generateMap()}</div>
-            <div class="col-sm-2">{renderEdits()}</div>
+            <div class="col-sm-2">{localStorage.getItem("jwt") &&
+                jwt_decode(localStorage.getItem("jwt"))._id !== data.user_id ? (
+                  <button class="btn" style={{backgroundColor: "#ccebff", textAlign: "center", width: "100%", marginTop:"15%"}} onClick={() => startChat()}>Chat</button>
+                ) : renderEdits()}</div>
           </div>
 
           <div class="row" style={{ borderRadius: "10px", marginTop: ".42%" }}>
@@ -312,12 +315,6 @@ const Listing = (props) => {
                     );
                   })}
                 </ul>
-              </div>
-              <div>
-                {localStorage.getItem("jwt") &&
-                jwt_decode(localStorage.getItem("jwt"))._id !== data.user_id ? (
-                  <button onClick={() => startChat()}>Chat</button>
-                ) : null}
               </div>
             </div>
           </div>
