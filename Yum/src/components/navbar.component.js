@@ -30,6 +30,15 @@ function UserGreeting(props) {
             My Listings
           </Link>
         </li>
+        <li className="navbar-item">
+          <Link
+            to="/chat"
+            params={localStorage.getItem("jwt")}
+            className="nav-link"
+          >
+            Chat
+          </Link>
+        </li>
       </ul>
       <ul className="navbar-nav navbar-right">
         <li className="navbar-brand">

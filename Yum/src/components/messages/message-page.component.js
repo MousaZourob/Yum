@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Messages from "./messages.component";
 
 function MessagePage() {
   const conversations = [];
@@ -18,7 +19,7 @@ function MessagePage() {
     });
 
     if (currentConvo) {
-      <Messages data={currentConvo}/>;
+      <Messages data={currentConvo} />;
     } else {
       return "No conversation selected";
     }
