@@ -81,7 +81,7 @@ const Listing = (props) => {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`
     },
     data: {
-      _id: data.listing_id
+      _id: data._id
     }
   });
   window.location = ('/my_listings')
