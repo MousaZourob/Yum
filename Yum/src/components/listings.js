@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Listing from "./listing.js";
 import jwt_decode from "jwt-decode";
+import queryString from "query-string";
 
 const Listings = (props) => {
   const [listings, setListings] = useState([]);
@@ -15,7 +16,10 @@ const Listings = (props) => {
   function renderListings() {
     if (props.user_id === undefined) {
       return listings.map((listing) => {
-        return <Listing data={listing} />;
+        if (listing._id === queryString.parse(window.location.search)?.open) {
+          return <Listing data={listing} open={true} />;
+        }
+        return <Listing data={listing} open={false} />;
       });
     } else {
       return listings

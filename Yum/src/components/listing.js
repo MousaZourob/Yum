@@ -51,7 +51,6 @@ const Listing = (props) => {
   }
 
   let name = data.name;
-
   const generateMap = () => {
     if (renderMap) {
       return (
@@ -81,7 +80,7 @@ const Listing = (props) => {
       Authorization: `Bearer ${localStorage.getItem("jwt")}`
     },
     data: {
-      _id: data.listing_id
+      _id: data._id
     }
   });
   window.location = ('/my_listings')
@@ -114,10 +113,12 @@ const Listing = (props) => {
       return (
         <div>
           <button
+          onClick={editListing}
           class="btn"
           style={{backgroundColor: "#ccebff", textAlign: "center", width: "100%"}}
           >Edit  </button>
           <button
+          onClick={deleteListing}
           class="btn"
           style={{ marginTop: "8%",backgroundColor: "#ccebff", textAlign: "center", width: "100%"}}
           >Delete</button>
@@ -232,7 +233,7 @@ const Listing = (props) => {
       }
       modal
       position="center"
-      
+      open={props.open}
     >
       {/*Specific Listing Info*/}
       {

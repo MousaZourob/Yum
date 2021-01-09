@@ -13,7 +13,7 @@ const ListingForm = () => {
   async function createListing(data, restrictions) {
     data.location = data.location.replace("-", "").replace(" ", "").toUpperCase();
     data.location = await getLocationData(data.location);
-    await axios({
+    const res = await axios({
       method: "post",
       url: "http://localhost:8000/listings/add",
       headers: {
@@ -22,7 +22,7 @@ const ListingForm = () => {
       data: { ...data, restrictions: restrictions, name: "test", image: image },
     });
 
-    window.location = `/listings`;
+    window.location = `/listings?open=${res.data._id}`;
   }
 
   async function getLocationData(postcode) {
