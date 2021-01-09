@@ -214,7 +214,7 @@ const Listing = (props) => {
             {/*PIC*/}
             <div class="col-md-6">
               <img
-                style={{ width: "100%", height: "100%", borderRadius: "10px" }}
+                style={{ marginTop: "2%", width: "100%", height: "auto", borderRadius: "10px", objectFit: "fill" }}
                 src={`http://localhost:8000/images/get/${data.image}`}
                 alt="Italian Trulli"
               ></img>

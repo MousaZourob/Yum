@@ -47,7 +47,8 @@ function Messages(props) {
   const renderSendMessage = () => {
     return (
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input type="text" name="message" ref={register} />
+        <input class="form-group" type="text" name="message" ref={register} placeholder="Type a message here" 
+        style={{width: "100%", height: "10%", marginBottom:"4%", padding: "1%"}}/>
       </form>
     );
   };
