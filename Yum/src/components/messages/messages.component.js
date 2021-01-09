@@ -20,6 +20,10 @@ function Messages(props) {
     socketRef.current.on("newChatMessage", (incomingMessage) => {
       setMessages((messages) => [...messages, incomingMessage]);
     });
+
+    return () => {
+      socketRef.current.disconnect();
+    };
   }, [props.data.roomID]);
 
   const sendMessage = (message) => {
