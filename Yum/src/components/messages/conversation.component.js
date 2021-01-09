@@ -4,8 +4,8 @@ function Conversation(props) {
   function renderConversation() {
     return (
       <div>
-        {props.data.toName}
-        {props.data.lastMessage}
+        <h1>Name: {props.data.toName}</h1>
+        <h4>Last Message Sent: {props.data.lastMessage}</h4>
       </div>
     );
   }

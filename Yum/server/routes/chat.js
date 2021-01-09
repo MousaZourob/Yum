@@ -12,11 +12,11 @@ router.get('/convos', jwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"
         for (const user of conversation.users) {
             if (user !== req.user._id) {
                 const userData = await User.findById(user);
-                const lastMessage = await ChatMessage.find({ room: conversation._id.toString() }).sort({ _id: -1 }).limit(1)[0];
+                const lastMessage = await ChatMessage.find({ room: conversation._id.toString() }).sort({ _id: -1 }).limit(1);
                 response.push({
                     roomID: conversation._id.toString(),
                     toName: userData.name,
-                    lastMessage: (lastMessage) ? lastMessage.message : ''
+                    lastMessage: (lastMessage[0]) ? lastMessage[0].message : ''
                 });
             }
         }
