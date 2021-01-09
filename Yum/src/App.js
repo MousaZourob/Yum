@@ -8,6 +8,7 @@ import Login from "./components/login.component";
 import Listings from "./components/listings.js";
 import ListingForm from "./components/listingform.component";
 import Home from "./components/home";
+import ChatRoom from "./components/chatRoom";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/my_listings">
         <Listings user_id={localStorage.getItem("jwt")} />
       </Route>
+      <Route path="/chatRoom" exact component={ChatRoom} />
     </Router>
   );
 }
