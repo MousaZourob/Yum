@@ -256,7 +256,7 @@ const Listing = (props) => {
             >
               <h1 style={{ marginLeft: "1%" }}>{data.title}</h1>
             </div>
-            <div class="col-sm-4" style={{width: "100%", background: "green"}}>{generateMap()}</div>
+            <div class="col-sm-4" style={{width: "100%"}}>{generateMap()}</div>
             <div class="col-sm-2">{renderEdits()}</div>
           </div>
 
@@ -264,7 +264,7 @@ const Listing = (props) => {
             {/*PIC*/}
             <div class="col-md-6">
               <img
-                style={{ background: "lightgreen", marginTop: "2%", width: "100%", height: "auto", borderRadius: "10px", objectFit: "fill" }}
+                style={{ marginTop: "2%", width: "100%", height: "auto", borderRadius: "10px", objectFit: "fill" }}
                 src={`http://localhost:8000/images/get/${data.image}`}
                 alt="Italian Trulli"
               ></img>
