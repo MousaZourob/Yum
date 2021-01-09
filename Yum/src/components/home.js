@@ -27,7 +27,7 @@ function Home() {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={`http://localhost:8000/images/get/${listings[18].image}`}
+                        src={`http://localhost:8000/images/get/${listings[0].image}`}
                         alt="Third slide"
                     />
                     <Carousel.Caption style={{ color: "black" }}>
