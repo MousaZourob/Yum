@@ -14,6 +14,7 @@ app.use("/users", require("./routes/users"));
 app.use("/images", require("./routes/images"));
 app.use("/listings", require("./routes/listings"));
 app.use("/listing", require("./routes/listing"));
+app.use("/chat", require("./routes/chat"));
 
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, {
