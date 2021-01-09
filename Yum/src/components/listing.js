@@ -2,6 +2,8 @@ import React, { useRef, useEffect, useState } from "react";
 import "reactjs-popup/dist/index.css";
 import Popup from "reactjs-popup";
 import "./styles.css";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
 import ReactMapGL, { Marker, Layer } from "react-map-gl";
 
 const Listing = (props) => {
@@ -85,6 +87,21 @@ const Listing = (props) => {
       );
     }
   };
+
+  const startChat = async () => {
+    const newChat = await axios({
+      method: 'post',
+      url: 'http://localhost:8000/chat/newconvo',
+      data: {
+        contactID: data.user_id
+      },
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`
+      }
+    });
+    
+    window.location = `/chat?open=${newChat.data.roomID}`;
+  }
 
   return (
     <Popup
@@ -247,6 +264,9 @@ const Listing = (props) => {
                     );
                   })}
                 </ul>
+              </div>
+              <div>
+                {(localStorage.getItem("jwt") && jwt_decode(localStorage.getItem("jwt"))._id !== data.user_id) ? <button onClick={() => startChat()}>Chat</button> : null}
               </div>
             </div>
           </div>
