@@ -71,6 +71,15 @@ const Listing = (props) => {
     }
   };
 
+  async function deleteListing() {
+    const res = await axios({
+      method: 'delete',
+      url: 'http://localhost:8000/listings/update',
+      validateStatus: null,
+      data: user
+    });
+  }
+
   const renderEdits = () => {
     if (props.editable) {
       return (
@@ -181,6 +190,7 @@ const Listing = (props) => {
               </div>
             </div>
           </div>
+          {renderEdits()}
         </div>
       }
       modal

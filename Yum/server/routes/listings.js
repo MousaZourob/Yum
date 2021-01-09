@@ -35,14 +35,30 @@ router.post(
   }
 );
 
-router.put('/update', jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] }), (req, res) => {
-    Listing.updateOne({"_id": req.user._id})
-    .then(() => res.json('Listing deleted!'))
+router.put(
+  '/update', 
+  jwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
+  (req, res) => {
+    Listing.findById(req.body._id)
+    .then(listing => {
+      listing.title = req.body.title,
+      listing.description = req.body.description,
+      listing.restrictions = req.body.restrictions,
+      listing.location = req.body.location,
+      listing.image = req.body.image ? req.body.image : "404.png"
+
+      listing.save()
+        .then(() => res.json("Listing updated!"))
+        .catch((err) => res.status(400).json("Error: " + err));
+    })
     .catch(err => res.status(400).json('Error: ' + err));
-});
+
+    console.log("Listing updated");
+  }
+);
 
 router.delete('/delete', jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] }), (req, res) => {
-    Listing.deleteOne({"user_id": req.user._id, "_id": Listing.ObjectId(req.body._id)})
+    Listing.deleteOne({"user_id": req.user._id, "_id": Mongoose.Types.ObjectId(req.body._id)})
     .then(() => res.json('Listing deleted!'))
     .catch(err => res.status(400).json('Error: ' + err));
 });
