@@ -73,8 +73,14 @@ const Listing = (props) => {
     if (props.editable) {
       return (
         <div>
-          <button>Edit</button>
-          <button>Delete</button>
+          <button
+          class="btn"
+          style={{backgroundColor: "#ccebff", textAlign: "center", width: "100%"}}
+          >Edit  </button>
+          <button
+          class="btn"
+          style={{ marginTop: "8%",backgroundColor: "#ccebff", textAlign: "center", width: "100%"}}
+          >Delete</button>
         </div>
       );
     }
@@ -157,7 +163,6 @@ const Listing = (props) => {
                 </ul>
               </div>
             </div>
-            {renderEdits()}
           </div>
         </div>
       }
@@ -173,8 +178,9 @@ const Listing = (props) => {
             width: "100%",
           }}
         >
-          <div class="row" style={{ padding: 5, borderRadius: "10px" }}>
+          <div class="row" style={{ background: "#cccccc", padding: 5, borderRadius: "10px" , margin: "0"}}>
             <div
+              class="col-sm-10" 
               style={{
                 background: "#cccccc",
                 width: "100%",
@@ -184,6 +190,7 @@ const Listing = (props) => {
             >
               <h1 style={{ marginLeft: "1%" }}>{data.title}</h1>
             </div>
+            <div class="col-sm-2">{renderEdits()}</div>
           </div>
 
           <div class="row" style={{ borderRadius: "10px", marginTop: ".42%" }}>

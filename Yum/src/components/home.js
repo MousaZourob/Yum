@@ -23,7 +23,7 @@ function Home() {
     return (
         <div>
             <h1 style={{ textAlign: "center", fontFamily: "Helvetica, sans-serif", margin:"2%" }}>Recent Listings</h1>
-            <Carousel >
+            <Carousel style={{width:"80%", left: "10%"}}>
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
