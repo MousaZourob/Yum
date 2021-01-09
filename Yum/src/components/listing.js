@@ -38,8 +38,8 @@ const Listing = (props) => {
     }
   }, []);
 
-  if (props.data.description.length > 400) {
-    desc = data.description.substr(0, 353) + "...";
+  if (props.data.description.length > 130) {
+    desc = data.description.substr(0, 130) + "...";
   } else {
     desc = data.description;
   }
@@ -150,6 +150,7 @@ const Listing = (props) => {
             cursor: "pointer",
             margin: 24,
             boxShadow: "5px 5px 5px #d9d9d9",
+           
           }}
         >
           {/*Basic Listing Info*/}
@@ -188,7 +189,7 @@ const Listing = (props) => {
               </div>
 
               <p
-                class="col-sm-3"
+                class="col-sm-2.5"
                 style={{
                   /*fontFamily: "monospace, courier-new",*/
                   marginLeft: "0.5%",
@@ -222,12 +223,16 @@ const Listing = (props) => {
                   })}
                 </ul>
               </div>
+              <div class="col-sm-2" style={{marginLeft:"2%", borderRadius:"10px"}}>
+                {generateMap()}
+                </div>
             </div>
           </div>
         </div>
       }
       modal
       position="center"
+      
     >
       {/*Specific Listing Info*/}
       {
@@ -235,12 +240,12 @@ const Listing = (props) => {
           class="container"
           style={{
             padding: 10,
-            width: "100%",
+            
           }}
         >
           <div class="row" style={{ background: "#cccccc", padding: 5, borderRadius: "10px" , margin: "0"}}>
             <div
-              class="col-sm-10" 
+              class="col-sm-6" 
               style={{
                 background: "#cccccc",
                 width: "100%",
@@ -250,6 +255,7 @@ const Listing = (props) => {
             >
               <h1 style={{ marginLeft: "1%" }}>{data.title}</h1>
             </div>
+            <div class="col-sm-4" style={{width: "100%", background: "green"}}>{generateMap()}</div>
             <div class="col-sm-2">{renderEdits()}</div>
           </div>
 
@@ -257,7 +263,7 @@ const Listing = (props) => {
             {/*PIC*/}
             <div class="col-md-6">
               <img
-                style={{ marginTop: "2%", width: "100%", height: "auto", borderRadius: "10px", objectFit: "fill" }}
+                style={{ background: "lightgreen", marginTop: "2%", width: "100%", height: "auto", borderRadius: "10px", objectFit: "fill" }}
                 src={`http://localhost:8000/images/get/${data.image}`}
                 alt="Italian Trulli"
               ></img>
@@ -277,8 +283,6 @@ const Listing = (props) => {
               >
                 <p>{data.description}</p>
               </div>
-
-              {generateMap()}
 
               {/*RESTRICTIONS*/}
               <div
