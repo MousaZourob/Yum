@@ -28,7 +28,7 @@ router.post(
 
     //Save new listing into database
     newListing.save()
-      .then(() => res.json("Listing added!"))
+      .then((listing) => res.status(200).send({ _id: listing._id.toString() }))
       .catch((err) => res.status(400).json("Error: " + err));
 
     console.log("New listing added");

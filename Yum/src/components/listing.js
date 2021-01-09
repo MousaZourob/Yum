@@ -51,7 +51,6 @@ const Listing = (props) => {
   }
 
   let name = data.name;
-
   const generateMap = () => {
     if (renderMap) {
       return (
@@ -230,6 +229,7 @@ const Listing = (props) => {
       }
       modal
       position="center"
+      open={props.open}
     >
       {/*Specific Listing Info*/}
       {
