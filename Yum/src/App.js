@@ -8,12 +8,13 @@ import Login from "./components/login.component";
 import Listings from "./components/listings.js";
 import ListingForm from "./components/listingform.component";
 import Home from "./components/home";
+import MessagePage from "./components/messages/message-page.component";
 
 function App() {
   return (
     <Router>
       <Navbar />
-      <br/>
+      <br />
       <Route path="/users/add" exact component={Register} />
       <Route path="/users/login" exact component={Login} />
       <Route path="/listings/add" exact component={ListingForm} />
@@ -22,6 +23,9 @@ function App() {
         <Listings user_id={localStorage.getItem("jwt")} />
       </Route>
       <Route path="/home" exact component={Home}/>
+      <Route path="/chat">
+        <MessagePage />
+      </Route>
     </Router>
   );
 }
