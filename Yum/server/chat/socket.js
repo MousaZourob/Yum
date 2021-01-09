@@ -9,8 +9,8 @@ module.exports = function (server) {
     });
 
     io.on("connection", (socket) => {
-        console.log('connected');
         const { roomID } = socket.handshake.query;
+        console.log(`User connected to room ID ${roomID}`);
         socket.join(roomID);
 
         socket.on("newChatMessage", async (data) => {
