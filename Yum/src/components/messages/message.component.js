@@ -20,6 +20,7 @@ function Message(props) {
          borderRadius: "18px", 
          padding: "1%",
          textAlign: "center" } 
+         
         : { backgroundColor: "lightgray",
         marginRight: "90%",
         borderRadius: "18px", 
