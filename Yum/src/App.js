@@ -9,6 +9,7 @@ import Listings from "./components/listings.js";
 import ListingForm from "./components/listingform.component";
 import Home from "./components/home";
 import MessagePage from "./components/messages/message-page.component";
+import Edit from "./components/edit";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       <Route path="/chat">
         <MessagePage />
       </Route>
+      <Route path="/edit_listing" exact component={Edit} />
     </Router>
   );
 }
