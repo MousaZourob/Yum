@@ -83,29 +83,10 @@ const Listing = (props) => {
       _id: data._id
     }
   });
-  window.location = ('/my_listings')
 }
 
   async function editListing() {
-    <Popup
-      trigger={
-        <div
-          style={{ cursor: "pointer" }}
-          className="nav-link font-weight-bold"
-        >
-          {" "}
-          Create Listing
-        </div>
-      }
-      modal
-      position="center"
-  >
-    <div>
-      <ListingForm />
-    </div>
-  </Popup>
-
-  window.location = ('/my_listings')
+    window.location = ('/edit_listing')
   }
 
   const renderEdits = () => {
@@ -115,8 +96,8 @@ const Listing = (props) => {
           <button
           onClick={editListing}
           class="btn"
-          style={{backgroundColor: "#ccebff", textAlign: "center", width: "100%"}}
-          >Edit  </button>
+          style={{ marginTop: "8%",backgroundColor: "#ccebff", textAlign: "center", width: "100%"}}
+          >Edit</button>
           <button
           onClick={deleteListing}
           class="btn"
