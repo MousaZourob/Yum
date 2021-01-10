@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import CreatableSelect from "react-select/creatable";
 import axios from "axios";
+import queryString from "query-string";
 
 const EditListingForm = () => {
   const { register, handleSubmit, errors } = useForm({
@@ -13,22 +14,23 @@ const EditListingForm = () => {
   async function EditListing(data, restrictions) {
     data.location = data.location.replace("-", "").replace(" ", "").toUpperCase();
     data.location = await getLocationData(data.location);
+    console.log(data.location);
     const res = await axios({
       method: "put",
-      url: "http://localhost:8000/listings/update",
+      url: "http://localhost:8000/listings/update/" + queryString.parse(window.location.search).id,
       headers: {
         Authorization: `Bearer ${localStorage.getItem("jwt")}`,
       },
       data: { 
-          _id: data._id,
+          _id: queryString.parse(window.location.search).id,
           title: data.title,
           description: data.description,
-          restrictions: data.restrictions,
+          restrictions: restrictions,
           location: data.location,
           image: image },
     });
 
-    window.location = `/listings?open=${res.data._id}`;
+    window.location = `/my_listings`;
   }
 
   async function getLocationData(postcode) {

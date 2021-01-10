@@ -36,10 +36,10 @@ router.post(
 );
 
 router.put(
-  '/update', 
+  '/update/:id', 
   jwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }),
   (req, res) => {
-    Listing.findById(req.body._id)
+    Listing.findById(req.params.id)
     .then(listing => {
       listing.title = req.body.title,
       listing.description = req.body.description,
