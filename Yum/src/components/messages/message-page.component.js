@@ -43,8 +43,8 @@ function MessagePage() {
   return (
     <div style={{background: "lightblue"}}>
       
-      <div class="col-sm-3" style={{float: "left", borderRightStyle: "solid", borderRightColor: "lightgrey"}}>{renderPage()}</div>
-      <div class="col-sm-9" style={{float: "right"}}>{(currentConvo) ? <Messages data={currentConvo} user_id={user_id} /> : "No conversation selected"}</div>
+      <div class="col-sm-2" style={{float: "left", borderRightStyle: "solid", borderRightColor: "lightgrey"}}>{renderPage()}</div>
+      <div class="col-sm-10" style={{float: "right"}}>{(currentConvo) ? <Messages data={currentConvo} user_id={user_id} /> : "No conversation selected"}</div>
       
     </div>
   )
