@@ -25,10 +25,8 @@ module.exports = function (server) {
     });
 
     socket.on("getChatHistory", async () => {
-      const history = await ChatMessage.find({ room: roomID })
-        .limit(25)
-        .sort({ date: "desc" });
-      socket.emit("chatHistory", history);
+      const history = await ChatMessage.find({ room: roomID }).sort({ _id: -1 }).limit(25);
+      socket.emit("chatHistory", history.reverse());
     });
   });
 };
