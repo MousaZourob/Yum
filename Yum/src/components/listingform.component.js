@@ -99,7 +99,7 @@ const ListingForm = () => {
               name="description"
               ref={register({
                 required: "Required",
-                maxLength: 350,
+                maxLength: 450,
               })}
               className="form-control"
               style={{ height: "160px", width: "240%" }}
