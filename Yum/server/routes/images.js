@@ -35,10 +35,7 @@ router.get("/get/:filename", function (req, res) {
   }
   // we restrict the filename to alphanumeric characters and a period to prevent directory traversal attacks
   const imagePath = path.normalize(
-    `${__dirname}/../uploads/${req.params.filename.replace(
-      /[^a-zA-Z0-9\.]/,
-      ""
-    )}`
+    `${__dirname}/../uploads/${req.params.filename.replace(/[^a-zA-Z0-9\.]/,"")}`
   );
   if (fs.existsSync(imagePath)) {
     res.sendFile(imagePath);
