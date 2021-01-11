@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import Message from "./message.component";
 import socketIOClient from "socket.io-client";
 import { useForm } from "react-hook-form";
+import ScrollableFeed from "react-scrollable-feed";
 
 function Messages(props) {
   const [messages, setMessages] = useState([]);
@@ -56,8 +57,10 @@ function Messages(props) {
   };
 
   return (
-    <div style={{maxWidth: "1000px"}}>
-      <div style={{ overflowY: "scroll", height: "calc(100vh - 170px)"}}>{renderMessages()}</div>
+    <div style={{ maxWidth: "1000px" }}>
+      <div style={{ height: "calc(100vh - 184px)" }}>
+        <ScrollableFeed>{renderMessages()}</ScrollableFeed>
+      </div>
       {renderSendMessage()}
     </div>
   );
