@@ -9,10 +9,14 @@ const ListingForm = () => {
   });
   const [restrictions, setRestrictions] = useState([]);
   const [image, setImage] = useState("");
+  const [uploading, setUploading] = useState(false);
 
   async function createListing(data, restrictions) {
     data.location = data.location.replace("-", "").replace(" ", "").toUpperCase();
     data.location = await getLocationData(data.location);
+    while (uploading) {
+      await new Promise(res => { setTimeout(res, 500)});
+    };
     const res = await axios({
       method: "post",
       url: "http://localhost:8000/listings/add",
@@ -22,7 +26,9 @@ const ListingForm = () => {
       data: { ...data, restrictions: restrictions, name: "test", image: image },
     });
 
-    window.location = `/listings?open=${res.data._id}`;
+    if (res.data._id) {
+      window.location = `/listings?open=${res.data._id}`;
+    }
   }
 
   async function getLocationData(postcode) {
@@ -56,6 +62,7 @@ const ListingForm = () => {
   };
 
   const handleImage = (e) => {
+    setUploading(true);
     const formData = new FormData();
     formData.append("image", e.target.files[0]);
     axios({
@@ -67,8 +74,10 @@ const ListingForm = () => {
       if (res.status === 200) {
         console.log(res.data.filename);
         setImage(res.data.filename);
+        setUploading(false);
       } else {
         console.log(`Upload failed with res status ${res.status}`);
+        setUploading(false);
       }
     });
   };
@@ -99,7 +108,7 @@ const ListingForm = () => {
               name="description"
               ref={register({
                 required: "Required",
-                maxLength: 350,
+                maxLength: 450,
               })}
               className="form-control"
               style={{ height: "160px", width: "240%" }}

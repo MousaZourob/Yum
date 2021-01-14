@@ -16,7 +16,6 @@ const Listing = (props) => {
   const [renderMap, setRenderMap] = useState(false);
   const [pos, setPos] = useState({});
 
-  var location = "Place";
 
   useEffect(() => {
     if (data.location) {
@@ -83,11 +82,11 @@ const Listing = (props) => {
       _id: data._id
     }
   });
-  window.location = (`/my_listings`)
+  window.location = ('/my_listings')
 }
 
   async function editListing() {
-    window.location = (`/edit_listing/?id=${data._id}`)
+    window.location = ('/edit_listing')
   }
 
   const renderEdits = () => {
@@ -167,7 +166,6 @@ const Listing = (props) => {
                 <p style={{ marginLeft: "1%" }}>
                   Donor: {name}
                   <br></br>
-                  {location}
                 </p>
               </div>
 
@@ -226,17 +224,16 @@ const Listing = (props) => {
             
           }}
         >
-          <div class="row" style={{ background: "#cccccc", padding: 5, borderRadius: "10px" , margin: "0"}}>
+          <div class="row" style={{ borderStyle: "solid", borderColor: "#A4A4A4", padding: 5, borderRadius: "10px" , margin: "0"}}>
             <div
               class="col-sm-6" 
               style={{
-                background: "#cccccc",
                 width: "100%",
                 borderRadius: "10px",
                 padding: 5,
               }}
             >
-              <h1 style={{ marginLeft: "1%" }}>{data.title}</h1>
+              <h1 style={{ marginLeft: "1%"}}>{data.title}</h1>
             </div>
             <div class="col-sm-4" style={{width: "100%"}}>{generateMap()}</div>
             <div class="col-sm-2">{localStorage.getItem("jwt") &&
@@ -261,10 +258,12 @@ const Listing = (props) => {
                 class="row"
                 style={{
                   padding: 10,
-                  background: "#cccccc",
+                  borderStyle: "solid",
                   borderRadius: "10px",
                   marginTop: "2%",
                   paddingBottom: 0,
+                  borderColor: "#A4A4A4",
+                  height:"68%"
                 }}
               >
                 <p>{data.description}</p>
@@ -275,11 +274,13 @@ const Listing = (props) => {
                 class="row"
                 style={{
                   padding: 10,
-                  background: "#cccccc",
+                  borderStyle: "solid",
                   borderRadius: "10px",
                   marginTop: "2.4%",
+                  borderColor: "#A4A4A4",
+                  height:"30%"
                 }}
-              >
+              > 
                 <ul
                   style={{
                     columnCount: 3,

@@ -30,7 +30,9 @@ const EditListingForm = () => {
           image: image },
     });
 
-    window.location = `/my_listings`;
+    if (res.data._id) {
+      window.location = `/listings?open=${res.data._id}`;
+    }
   }
 
   async function getLocationData(postcode) {

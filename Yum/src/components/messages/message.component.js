@@ -5,30 +5,33 @@ function Message(props) {
   const user = props.user_id;
 
   const renderMessage = () => {
-    let className;
-    if (user === props.data.from) {
-      className = "sentMessage";
-    } else {
-      className = "receivedMessage";
+    const sentMessageStyle = {
+      backgroundColor: "lightblue",
+      color: "black",
+      float: "right",
+      borderRadius: "18px",
+      padding: "1%",
+      textAlign: "center",
+      maxWidth: "80%",
+      marginRight: "16px"
     }
+
+    const receivedMessageStyle = {
+      backgroundColor: "lightgray",
+      float: "left",
+      borderRadius: "18px",
+      padding: "1%",
+      textAlign: "center",
+      maxWidth: "80%"
+    }
+
     return (
-      <p
-        className={className}
-        style={className === "sentMessage" ? 
-        { backgroundColor: "lightgray",
-         marginLeft: "90%", 
-         borderRadius: "18px", 
-         padding: "1%",
-         textAlign: "center" } 
-         
-        : { backgroundColor: "lightgray",
-        marginRight: "90%",
-        borderRadius: "18px", 
-        padding: "1%",
-        textAlign: "center" } }
-      >
-        {props.data.message}
-      </p>
+      <div style={{overflow: "auto"}}>
+        <p style={(user === props.data.from) ? sentMessageStyle : receivedMessageStyle}>
+          {props.data.message}
+        </p>
+      </div>
+      
     );
   };
 

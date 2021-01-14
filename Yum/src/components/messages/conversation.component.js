@@ -3,9 +3,12 @@ import React from "react";
 function Conversation(props) {
   function renderConversation() {
     return (
-      <div className="card" style={{margin: "4%", borderRadius: "10px", padding: "2%", cursor: "pointer" }}>
-        <h3>Name: {props.data.toName}</h3>
-        <p>Last Message Sent: {props.data.lastMessage}</p>
+      <div className="card" style={{ margin: "4%", borderRadius: "10px", cursor: "pointer", paddingLeft: "4%", paddingTop: "6.4%" }}>
+        <div style={{marginBottom:"0"}}>
+          <h3 style={{ marginBottom: "0" }}>{props.data.toName}</h3>
+          <p>{props.data.lastMessage}</p>
+        </div>
+
       </div>
     );
   }

@@ -2,9 +2,11 @@ import React, { useEffect, useState, useRef } from "react";
 import Message from "./message.component";
 import socketIOClient from "socket.io-client";
 import { useForm } from "react-hook-form";
+import ScrollableFeed from "react-scrollable-feed";
 
 function Messages(props) {
   const [messages, setMessages] = useState([]);
+  const [message, setMessage] = useState("");
   const socketRef = useRef();
   const { register, handleSubmit } = useForm();
 
@@ -41,21 +43,24 @@ function Messages(props) {
   };
 
   const onSubmit = (data) => {
-    sendMessage(data.message);
+    sendMessage(message);
+    setMessage("");
   };
 
   const renderSendMessage = () => {
     return (
       <form onSubmit={handleSubmit(onSubmit)} style={{width: "100%"}}>
-        <input class="form-group" type="text" name="message" ref={register} placeholder="Type your message here" 
-        style={{width: "100%", height: "10%", marginBottom:"4%", padding: "1%"}}/>
+        <input class="form-group" type="text" name="message" ref={register} placeholder="Type your message here" value={message} onChange={(e) => setMessage(e.target.value)}
+        style={{width: "100%", height: "50px", marginBottom:"4%", padding: "1%"}}/>
       </form>
     );
   };
 
   return (
-    <div>
-      {renderMessages()}
+    <div style={{ maxWidth: "1000px" }}>
+      <div style={{ height: "calc(100vh - 184px)" }}>
+        <ScrollableFeed forceScroll>{renderMessages()}</ScrollableFeed>
+      </div>
       {renderSendMessage()}
     </div>
   );
