@@ -86,7 +86,7 @@ const Listing = (props) => {
 }
 
   async function editListing() {
-    window.location = ('/edit_listing')
+    window.location = (`/edit_listing/?id=${data._id}`)
   }
 
   const renderEdits = () => {
