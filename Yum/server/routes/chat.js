@@ -16,12 +16,15 @@ router.get('/convos', jwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"
                 response.push({
                     roomID: conversation._id.toString(),
                     toName: userData.name,
-                    lastMessage: (lastMessage[0]) ? lastMessage[0].message : ''
+                    lastMessage: (lastMessage[0]) ? lastMessage[0].message : '',
+                    lastTime: ([lastMessage[0]]) ? Date.parse(lastMessage[0].createdAt) : 0
                 });
             }
         }
     }
 
+    response.sort((a, b) => b.lastTime - a.lastTime);
+    
     res.status(200).send(response);
 });
 
