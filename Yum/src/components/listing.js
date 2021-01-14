@@ -83,6 +83,7 @@ const Listing = (props) => {
       _id: data._id
     }
   });
+  window.location = (`/my_listings`)
 }
 
   async function editListing() {
