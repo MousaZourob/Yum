@@ -12,6 +12,15 @@ router.get("/get", (req, res) => {
   console.log("Listings Found");
 });
 
+router.get("/get/:id", (req, res) => {
+  console.log("Listing requested");
+  Listing.findById(req.params.id)
+    .then((listings) => res.json(listings))
+    .catch((err) => res.status(400).json("Error: " + err));
+
+  console.log("Listings Found");
+});
+
 router.post("/add", jwt({ secret: process.env.JWT_SECRET, algorithms: ["HS256"] }), (req, res) => {
     if (!req.body.title || !req.body.description || !req.body.restrictions) {
       res.status(400).send({ error: "Not all fields were complete" })
@@ -59,7 +68,6 @@ router.put('/update/:id', jwt({ secret: process.env.JWT_SECRET, algorithms: ["HS
       listing.title = req.body.title,
       listing.description = req.body.description,
       listing.restrictions = req.body.restrictions,
-      listing.location = req.body.location,
       listing.image = req.body.image ? req.body.image : "404.png"
 
       listing.save()

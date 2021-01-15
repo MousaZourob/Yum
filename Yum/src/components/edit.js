@@ -5,16 +5,45 @@ import axios from "axios";
 import queryString from "query-string";
 
 const EditListingForm = () => {
-  const { register, handleSubmit, errors } = useForm({
+
+  const { register, handleSubmit, errors, setValue } = useForm({
     mode: "onBlur",
   });
+
+  const [state, setState] = useState({
+    title: "test",
+    description: "",
+    restrictions: {
+
+    },
+    image: ""
+  });
+
+  async function getData() {
+    const res = await axios({
+      method: "get",
+      url: "http://localhost:8000/listings/get/" + queryString.parse(window.location.search).id,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      }
+    })
+
+    return res.data;
+  }
+
+  useEffect(() => {
+    getData().then((response) => {
+      setValue("title", response.title)
+      setValue("description", response.description)
+      setValue("restrictions", response.restrictions)
+      setValue("image", response.image)
+    })
+  },[])
+
   const [restrictions, setRestrictions] = useState([]);
   const [image, setImage] = useState("");
 
   async function EditListing(data, restrictions) {
-    data.location = data.location.replace("-", "").replace(" ", "").toUpperCase();
-    data.location = await getLocationData(data.location);
-    console.log(data.location);
     const res = await axios({
       method: "put",
       url: "http://localhost:8000/listings/update/" + queryString.parse(window.location.search).id,
@@ -26,7 +55,7 @@ const EditListingForm = () => {
           title: data.title,
           description: data.description,
           restrictions: restrictions,
-          location: data.location,
+          location: state.location,
           image: image },
     });
 
@@ -35,24 +64,12 @@ const EditListingForm = () => {
     }
   }
 
-  async function getLocationData(postcode) {
-    console.log(postcode);
-    const res = await axios({
-      method: "post",
-      url: "http://localhost:8000/listing/location",
-      data: { post_code: postcode },
-    });
-    if (res.data.status === "OK") {
-      return JSON.stringify(res.data.results[0].geometry)
-    }
-  }
-
   const onSubmit = async (values) => {
     await EditListing(values, JSON.stringify(restrictions));
     setRestrictions([]);
     
   };
-
+  
   const options = [
     { value: "halal", label: "Halal" },
     { value: "vegetarian", label: "Vegetarian" },
@@ -95,12 +112,12 @@ const EditListingForm = () => {
               ref={register({
                 required: "Required",
                 maxLength: 60,
+                defaultValue: state.title
               })}
               className="form-control"
             />
           </label>
         </div>
-
         <div>
           <label className="font-weight-bold">
             Description
@@ -116,24 +133,6 @@ const EditListingForm = () => {
             />
           </label>
         </div>
-
-        <div style={{ fontWeight: "bold" }}>
-          Postal Code
-          <input
-            style={{ marginLeft: "1%", marginTop: "2%" }}
-            type="text"
-            name="location"
-            ref={register({
-              required: "Required",
-              pattern: {
-                value: /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i,
-                message: "Invalid Postal Code",
-              },
-            })}
-          />
-          {errors.location && <span>{errors.location.message}</span>}
-        </div>
-
         <div>
           <label className="font-weight-bold" style={{ marginTop: "2%" }}>
             Dietary Restrictions
