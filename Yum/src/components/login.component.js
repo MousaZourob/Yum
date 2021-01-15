@@ -93,7 +93,7 @@ export default class Login extends Component {
                     { this.state.resMessage == 400 &&
                     <h3 className="error"> Complete all the fields! </h3> }
                     { this.state.resMessage == 401 &&
-                    <h3 className="error"> User does not exist or incorrent password! </h3> }
+                    <h3 className="error"> User does not exist or incorrect password! </h3> }
                     { this.state.resMessage == 200 &&
                     <h3 className="error"> Success! </h3> }
                     

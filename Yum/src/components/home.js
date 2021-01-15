@@ -62,9 +62,12 @@ function Home() {
                 </Carousel.Item>
             </Carousel>
 
-            <h1 style={{ marginTop: "2%", textAlign: "center" }}>Our Mission</h1>
-            <h5 style={{ fontWeight: "lighter" }}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <h1 style={{ marginTop: "2%", textAlign: "center", marginBottom:"1%" }}>Our Mission</h1>
+            <h5 style={{ fontWeight: "lighter", paddingLeft:"10%", paddingRight: "10%", textAlign: "justify"}}>
+            Yum is a minimalist responsive web application built with the MERN stack that allows users to donate excess food and reduce food waste. Did you know that roughly one-third of the food produced in the world for human consumption every year (approximately 1.3 billion tonnes) gets lost or wasted? That is perfectly good food that is thrown away due to imperfections in shape and colour. Yum aims to change this by allowing both individuals and establishments to contribute to solving the food waste problem by donating their excess food.
+            <br/>
+            <br/>
+            Users can create and view postings using the interactive UI built with React and Bootstrap. To allow users to save listings, a backend server built with Node and Express allows user's to create accounts and login. Using JWT, user authentication is done and passwords are encrypted in the MongoDB which stores users and listings. To facilitate meetings between user's a chat function was implemented using websockets. Using the interactive map built with the Google Maps API users can see which listings are in their area.
             </h5>
 
         </div>
