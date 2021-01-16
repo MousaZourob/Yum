@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const app = express();
 const server = require('http').createServer(app);
 const socket = require('./chat/socket')(server);
+const PORT = process.env.PORT || 8000
 
 require("dotenv").config();
 
@@ -28,6 +29,6 @@ connection.once("open", () => {
   console.log("MongoDB database connection established");
 });
 
-server.listen(8000, function () {
+server.listen(PORT, function () {
   console.log("Server listening on port 8000");
 });
