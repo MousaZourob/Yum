@@ -20,13 +20,13 @@ Introducing Yum! Built with the MERN stack, Yum is a responsive food sharing pla
 ![Sign-in](https://user-images.githubusercontent.com/66835262/104818036-fe97de80-57f2-11eb-886e-249ff244aede.gif)
 
 #### Create listing:
-![Create listing](https://user-images.githubusercontent.com/66835262/104818080-49195b00-57f3-11eb-99a1-9f7895102970.gif)
+![Create](https://user-images.githubusercontent.com/66835262/104818080-49195b00-57f3-11eb-99a1-9f7895102970.gif)
 
 #### Edit and delete listing:
-
+![Edit](https://user-images.githubusercontent.com/66835262/104818173-e3799e80-57f3-11eb-9cee-a0c06a4534ae.gif)
 
 #### Chat:
-
+![Chat](https://user-images.githubusercontent.com/66835262/104818270-9ba74700-57f4-11eb-949b-63d3fb8fb79e.gif)
 
 ### Libraries and Frameworks Used:
 * **React:** https://reactjs.org/
