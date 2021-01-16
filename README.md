@@ -12,18 +12,15 @@ Introducing Yum! Built with the MERN stack, Yum is a responsive food sharing pla
 - Interactive map built with the **Google Maps and Mapbox APIs**, to view the relative location of each listing, allowing users to better coordinate meeting up and dropping off
 
 ### Demo:
-#### Home page:
-<img src="https://user-images.githubusercontent.com/66835262/104817913-68fc4f00-57f2-11eb-9ec6-70bbd834cbf1.png" width="800px" height="450px">
-
 #### Register:
 ![Register](https://user-images.githubusercontent.com/66835262/104817903-584bd900-57f2-11eb-933f-78f3ce75402b.gif)
 
 
-#### Sign in:
-
+#### Sign-in/logout:
+![Sign-in](https://user-images.githubusercontent.com/66835262/104818036-fe97de80-57f2-11eb-886e-249ff244aede.gif)
 
 #### Create listing:
-
+![Create listing](https://user-images.githubusercontent.com/66835262/104818080-49195b00-57f3-11eb-99a1-9f7895102970.gif)
 
 #### Edit and delete listing:
 
