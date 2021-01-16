@@ -58,7 +58,8 @@ function Messages(props) {
 
   return (
     <div style={{ maxWidth: "1000px" }}>
-      <div style={{ height: "calc(100vh - 184px)" }}>
+      <h2>{props.data.toName}</h2>
+      <div style={{ height: "calc(100vh - 220px)" }}>
         <ScrollableFeed forceScroll>{renderMessages()}</ScrollableFeed>
       </div>
       {renderSendMessage()}
