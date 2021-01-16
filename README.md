@@ -13,7 +13,7 @@ Introducing Yum! Built with the MERN stack, Yum is a responsive food sharing pla
 
 ### Demo:
 #### Home page:
-<img src="https://user-images.githubusercontent.com/66835262/104817913-68fc4f00-57f2-11eb-9ec6-70bbd834cbf1.png" height="800px">
+<img src="https://user-images.githubusercontent.com/66835262/104817913-68fc4f00-57f2-11eb-9ec6-70bbd834cbf1.png" width="800px" height="450px">
 
 #### Register:
 ![Register](https://user-images.githubusercontent.com/66835262/104817903-584bd900-57f2-11eb-933f-78f3ce75402b.gif)
