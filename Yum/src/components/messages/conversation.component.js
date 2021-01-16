@@ -5,7 +5,9 @@ function Conversation(props) {
   function getDate(timeInMills) {
     const duration = Duration.fromMillis(Date.now() - timeInMills).shiftTo('years', 'months', 'days', 'hours', 'minutes', 'seconds', 'milliseconds').toObject();
     console.log(duration);
-    if (duration.years > 0) {
+    if (timeInMills === 0) {
+      return `Never`;
+    } else if (duration.years > 0) {
       return `${duration.years} Years Ago`;
     } else if (duration.months > 0) {
       return `${duration.months} Months Ago`;
