@@ -1,6 +1,6 @@
 # Yum
 ### Overview:
-Did you know that roughly one-third of the food produced in the world for human consumption every year (approximately 1.3 billion tonnes) gets wasted? That is perfectly good food that is thrown away due to imperfections in shape and colour. Roughly 35% of wasted food is thrown out at supermarkets, shops, and households, much of which is perfectly suitable for eating! 
+Did you know that **roughly one-third of the food produced in the world for human consumption every year (approximately 1.3 billion tonnes) gets wasted?** That is perfectly good food that is thrown away due to imperfections in shape and colour. Roughly 35% of wasted food is thrown out at supermarkets, shops, and households, much of which is perfectly suitable for eating! 
 <br /><br />
 Introducing Yum! Built with the MERN stack, Yum is a responsive food sharing platform, meant to facilitate the donation and receival of food from donors to recipients. Donors and recipients can register using the register/login system, post listings, and chat with other users! By allowing both individuals and establishments to donate food, Yum aims to help solve the food waste problem and end hunger for the underprivileged.
 
@@ -12,6 +12,24 @@ Introducing Yum! Built with the MERN stack, Yum is a responsive food sharing pla
 - Interactive map built with the **Google Maps and Mapbox APIs**, to view the relative location of each listing, allowing users to better coordinate meeting up and dropping off
 
 ### Demo:
+#### Home page:
+![Home](https://user-images.githubusercontent.com/66835262/104817913-68fc4f00-57f2-11eb-9ec6-70bbd834cbf1.png)
+
+#### Register:
+![Register](https://user-images.githubusercontent.com/66835262/104817903-584bd900-57f2-11eb-933f-78f3ce75402b.gif)
+
+
+#### Sign in:
+
+
+#### Create listing:
+
+
+#### Edit and delete listing:
+
+
+#### Chat:
+
 
 ### Libraries and Frameworks Used:
 * **React:** https://reactjs.org/
